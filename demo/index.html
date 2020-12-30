@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <style>
+        #container {
+            display: block;
+            width: 600px;
+            height: 600px;
+        }
+
+        #container .thumb {
+            border-radius: 100px;
+            background-color: cadetblue;
+            align-self: center;
+        }
+
+        #container .thumb.s {
+            width: 15px;
+            height: 15px;
+            margin: 2px;
+        }
+
+        #container .thumb.m {
+            width: 30px;
+            height: 30px;
+            margin: 4px;
+        }
+
+        #container .thumb.l {
+            width: 60px;
+            height: 60px;
+            margin: 8px;
+        }
+
+        #container .row {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .grid-container.full {
+            width: 76px;
+            height: 76px;
+        }
+
+        .grid-container.quarter {
+            width: 38px;
+            height: 38px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+    </div>
+
+    <script type="module">
+        import { render } from 'lit-html';
+        import {template, generateSampleData, BLOCK_SIZE} from '../src/gallery';
+        const container = document.getElementById('container');
+        const numColumns = parseInt( container.getBoundingClientRect().width / BLOCK_SIZE );
+        render(template(generateSampleData(373), numColumns), container);
+    </script>
+</body>
+</html>

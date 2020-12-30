@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <style>
+        #container {
+            display: flex;
+        }
+
+        #container .thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 30px;
+            background-color: cadetblue;
+            align-self: center;
+        }
+
+        #container .thumb.s {
+            width: 10px;
+            height: 10px;
+        }
+
+        #container .thumb.m {
+            width: 20px;
+            height: 20px;
+        }
+
+        #container .thumb.l {
+            width: 40px;
+            height: 40px;
+        }
+
+        #container .column {
+            display: flex;
+            flex-direction: row;
+            width: 40px;
+            flex-wrap: wrap;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .grid-container.full {
+            width: 40px;
+            height: 40px;
+        }
+
+        .grid-container.quarter {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+
+        const columns = 5;
+        const rows = 20;
+        for (let col = 0; col < columns; col++) {
+            const colEl = document.createElement('div');
+            container.appendChild(colEl);
+            colEl.classList.add('column');
+            for (let row = 0; row < rows; row++ ) {
+                const size = Math.random() > .9 ? 'quarter' : 'full';
+
+                let container;
+                if (size === 'quarter') {
+                    for (let c = 0; c < 4; c++) {
+                        container = createContainer(size);
+                        populateContainer(container, size);
+                        colEl.appendChild(container);
+                    }
+                } else {
+                    container = createContainer(size);
+                    populateContainer(container, size);
+                    colEl.appendChild(container);
+                }
+            }
+        }
+
+        function createContainer(size) {
+            const grid = document.createElement('div');
+            grid.classList.add(`grid-container`);
+            grid.classList.add(size);
+            return grid;
+        }
+
+        function populateContainer(container, size) {
+            const count = size === 'full' ? 16 : 4;
+
+            if (Math.random() > .75) {
+                const thumbEl = document.createElement('div');
+                thumbEl.classList.add('thumb');
+                container.appendChild(thumbEl);
+                thumbEl.classList.add(count === 4 ? 'm' : 'l');
+            } else {
+                for (let c = 0; c < count; c++) {
+                    const thumbEl = document.createElement('div');
+                    thumbEl.classList.add('thumb');
+                    container.appendChild(thumbEl);
+                    thumbEl.classList.add('s');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
