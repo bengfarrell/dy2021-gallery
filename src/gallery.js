@@ -1,13 +1,14 @@
-import {repeat} from 'lit-html/directives/repeat';
 import {html} from 'lit-html';
 
-export const BLOCK_SIZE = 76;
-export const QUARTER_CONTAINER_ITEMS = 4;
-export const FULL_CONTAINER_ITEMS = 4;
+const QUARTER_CONTAINER_ITEMS = 4;
+const FULL_CONTAINER_ITEMS = 4;
+
+let expandedRow = undefined;
+let hovered = undefined;
 
 export const template = (data, numColumns) => {
-    const mat = containerizeData(data, numColumns);
-    return html`${mat.map((row) =>
+    const grid = containerizeData(data, numColumns);
+    return html`${grid.map((row) =>
             html`<div class="row">${row.map((item) => {
                 return html`${renderItem(item)}`;
             })
@@ -15,11 +16,20 @@ export const template = (data, numColumns) => {
     )}`;
 };
 
+export const addInteractivity = (container, callback) => {
+    container.addEventListener('click', event => {
+        const thumb = event.target;
+        if (thumb.classList.contains('thumb')) {
+            callback(thumb.dataset.id);
+        }
+    });
+}
+
 const renderItem = (item) => {
     if (item.type === 'container') {
         return html`${renderContainer(item)}`;
     }
-    return html`<div id="${item.item.id}" class="thumb ${item.size}"></div>`;
+    return html`<div data-id="${item.item.id}" class="thumb ${item.size}" style="background-image: url('${item.item.thumb}')"></div>`;
 }
 
 const renderContainer = (container) => {
@@ -108,17 +118,6 @@ const containerizeData = (data, columns) => {
     return rows;
 }
 
-const logMatrix = (mat) => {
-    mat.forEach( (row, indx) => {
-        console.log(indx, row.map(item => {
-            switch (item.size) {
-                case 's': return 1;
-                case 'm': return 4;
-                case 'l': return 12;
-            }}).join(' '));
-    })
-}
-
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -130,7 +129,7 @@ const shuffleArray = (array) => {
 export const generateSampleData = (numItems) => {
     const results = [];
     for (let c = 0; c < numItems; c++) {
-        results.push( { id: c, thumb: '' } );
+        results.push( { id: c, thumb: `./sampleimages/sample${parseInt(Math.random() * 7) + 1}.jpeg` } );
     }
     return results;
 }

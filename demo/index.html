@@ -4,41 +4,98 @@
     <meta charset="UTF-8">
     <title>Gallery</title>
     <style>
-        #container {
-            display: block;
+        #gallery {
             width: 600px;
             height: 600px;
+            display: inline-block;
+            position: relative;
         }
 
-        #container .thumb {
+        #gallery.selected-mode #thumb-container {
+            display: none;
+        }
+
+        #gallery:not(.selected-mode) #full-view {
+            display: none;
+        }
+
+        #thumb-container,
+        #full-view {
+            display: inline;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        #full-view {
+            display: flex;
+            width: 100%;
+            align-items: center;
+        }
+
+        #full-view .info {
+            display: flex;
+            flex-direction: column;
+            font-size: 16px;
+            font-family: sans-serif;
+            margin-left: auto;
+            margin-bottom: 10px;
+        }
+
+        #full-view .info button {
+            width: 150px;
+            font-size: 24px;
+            font-family: sans-serif;
+            color: white;
+            background-color: #00D5BC;
+            border-radius: 30px;
+            border: none;
+            margin-top: 15px;
+            padding: 10px;
+        }
+
+        #thumb-container .thumb {
             border-radius: 100px;
-            background-color: cadetblue;
-            align-self: center;
+            background-color: #EAEAEA;
+            filter: saturate(20%);
         }
 
-        #container .thumb.s {
+        #thumb-container .thumb:hover {
+            transform: scale(2.5, 2.5);
+            position: relative;
+            z-index: 9999;
+            filter: saturate(100%);
+        }
+
+        #gallery.selected-mode .thumb {
+            transform: scale(0, 0);
+            transition: transform 500ms ease-in
+        }
+
+        #thumb-container .thumb.s {
             width: 15px;
             height: 15px;
             margin: 2px;
         }
 
-        #container .thumb.m {
+        #thumb-container .thumb.m {
             width: 30px;
             height: 30px;
             margin: 4px;
         }
 
-        #container .thumb.l {
+        #thumb-container .thumb.l {
             width: 60px;
             height: 60px;
             margin: 8px;
         }
 
-        #container .row {
+        #thumb-container .row {
             display: flex;
             flex-direction: row;
             width: 100%;
             flex-wrap: wrap;
+            height: 76px;
         }
 
         .grid-container {
@@ -46,7 +103,6 @@
             flex-wrap: wrap;
             flex-direction: row;
             justify-content: center;
-            overflow: hidden;
         }
 
         .grid-container.full {
@@ -58,18 +114,45 @@
             width: 38px;
             height: 38px;
         }
+
+        #full-image {
+            width: 50%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        #container.selected-mode #full-view {
+            height: 100%;
+        }
     </style>
 </head>
 <body>
-    <div id="container">
+    <div id="gallery">
+        <div id="thumb-container"></div>
+        <div id="full-view">
+            <div id="full-image"></div>
+            <div class="info">
+                <h3>Created by:</h3>
+                <span>Kelly H.</span>
+                <button>Remix It!</button>
+            </div>
+        </div>
     </div>
-
     <script type="module">
         import { render } from 'lit-html';
-        import {template, generateSampleData, BLOCK_SIZE} from '../src/gallery';
-        const container = document.getElementById('container');
-        const numColumns = parseInt( container.getBoundingClientRect().width / BLOCK_SIZE );
+        import {template, generateSampleData, addInteractivity} from '../src/gallery';
+
+        const blockSize = 76; // synchronize with full container size
+        const container = document.getElementById('thumb-container');
+        const numColumns = parseInt( container.getBoundingClientRect().width / blockSize );
         render(template(generateSampleData(373), numColumns), container);
+        addInteractivity(container, id => {
+            document.getElementById('gallery').classList.toggle('selected-mode')
+            console.log(document.getElementById('full-image'))
+            document.getElementById('full-image').style.backgroundImage = `url("./sampleimages/full.jpeg")`;
+        });
     </script>
 </body>
 </html>
