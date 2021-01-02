@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <style>
+        :root {
+            --smallThumbSize: 30px;
+            --smallThumbMargin: 5px;
+        }
+
+        #gallery {
+            width: 100vw;
+            height: 600px;
+            margin-top: 50px;
+            display: inline-block;
+            position: relative;
+            align-content: center;
+        }
+
+        #gallery.selected-mode #thumb-container {
+            display: none;
+        }
+
+        #gallery:not(.selected-mode) #full-view {
+            display: none;
+        }
+
+        #thumb-container,
+        #full-view {
+            display: inline;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        #full-view {
+            display: flex;
+            width: 100%;
+            align-items: center;
+        }
+
+        #full-view .info {
+            display: flex;
+            flex-direction: column;
+            font-size: 16px;
+            font-family: sans-serif;
+            margin-left: auto;
+            margin-bottom: 10px;
+        }
+
+        #full-view .info button {
+            width: 150px;
+            font-size: 24px;
+            font-family: sans-serif;
+            color: white;
+            background-color: #00D5BC;
+            border-radius: 30px;
+            border: none;
+            margin-top: 15px;
+            padding: 10px;
+        }
+
+        #thumb-container .thumb {
+            border-radius: 100px;
+            background-color: #EAEAEA;
+            filter: saturate(20%);
+        }
+
+        #thumb-container .thumb:hover {
+            transform: scale(2.5, 2.5);
+            position: relative;
+            z-index: 9999;
+            filter: saturate(100%);
+        }
+
+        #gallery.selected-mode .thumb {
+            transform: scale(0, 0);
+            transition: transform 500ms ease-in
+        }
+
+        #thumb-container .thumb.s {
+            width: var(--smallThumbSize);
+            height: var(--smallThumbSize);
+            margin: var(--smallThumbMargin);
+        }
+
+        #thumb-container .thumb.m {
+            width: calc(var(--smallThumbSize) * 2);
+            height: calc(var(--smallThumbSize) * 2);
+            margin: calc(var(--smallThumbMargin) * 2);
+        }
+
+        #thumb-container .thumb.l {
+            width: calc(var(--smallThumbSize) * 2 * 2);
+            height: calc(var(--smallThumbSize) * 2 * 2);
+            margin: calc(var(--smallThumbMargin) * 2 * 2);
+        }
+
+        #thumb-container .row {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            flex-wrap: wrap;
+            height: calc(var(--smallThumbSize) * 2 * 2 + var(--smallThumbMargin) * 2 * 2 * 2);
+        }
+
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .grid-container.full {
+            width: calc(var(--smallThumbSize) * 2 * 2 + var(--smallThumbMargin) * 2 * 2 * 2);
+            height: calc(var(--smallThumbSize) * 2 * 2 + var(--smallThumbMargin) * 2 * 2 * 2);
+        }
+
+        .grid-container.quarter {
+            width: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
+            height: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
+        }
+
+        #full-image {
+            width: 50%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        #container.selected-mode #full-view {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <button id="regenerate">Re-generate thumbs</button> with <input type="number" id="numThumbs" value="120" /> sample items and a thumb size of
+    <input id="thumbSize" type="range" min="10" max="60" value="15" />
+    <div id="gallery">
+        <div id="thumb-container"></div>
+        <div id="full-view">
+            <div id="full-image"></div>
+            <div class="info">
+                <h3>Created by:</h3>
+                <span>Kelly H.</span>
+                <button>Remix It!</button>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import {renderGallery, addInteractivity} from './gallery.js';
+
+        const container = document.getElementById('thumb-container');
+        document.getElementById('regenerate').addEventListener( 'click', () => renderGallery(container) );
+        renderGallery(container);
+
+        addInteractivity(container, id => {
+            document.getElementById('gallery').classList.toggle('selected-mode')
+            document.getElementById('full-image').style.backgroundImage = `url("./sampleimages/full.jpeg")`;
+        });
+    </script>
+</body>
+</html>
