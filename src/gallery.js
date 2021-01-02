@@ -1,10 +1,19 @@
-import {html} from 'lit-html';
+import {html, render} from 'lit-html';
 
 const QUARTER_CONTAINER_ITEMS = 4;
 const FULL_CONTAINER_ITEMS = 4;
 
-let expandedRow = undefined;
-let hovered = undefined;
+export const renderGallery = (container) => {
+    const thumbSize = document.getElementById('thumbSize').value;
+    const thumbMargin = parseInt(thumbSize / 6);
+    const blockSize = thumbSize * 2 * 2 + thumbMargin * 2 * 2 * 2; // synchronize with full container size
+    const numColumns = parseInt( container.getBoundingClientRect().width / blockSize );
+    const numThumbs = document.getElementById('numThumbs').value;
+
+    document.documentElement.style.setProperty('--smallThumbSize', thumbSize + "px");
+    document.documentElement.style.setProperty('--smallThumbMargin', parseInt(thumbSize / 6) + "px");
+    render(template(generateSampleData(numThumbs), numColumns), container);
+}
 
 export const template = (data, numColumns) => {
     const grid = containerizeData(data, numColumns);
@@ -62,14 +71,14 @@ const containerizeData = (data, columns) => {
 
     const fullContainers = [];
     // limit the big ones to half the fill weight so we don't go overboard
-    while (deltaFilling > 12 && deltaFilling > originalDeltaFilling / 2) {
+    while (deltaFilling > QUARTER_CONTAINER_ITEMS * FULL_CONTAINER_ITEMS + 1 && deltaFilling > originalDeltaFilling / 2) {
         // cast as quarter item
         fullContainers.push({ item: data.pop(), size: 'l' });
         deltaFilling -= QUARTER_CONTAINER_ITEMS * FULL_CONTAINER_ITEMS - 1; // trade 1 item for 15 spaces
     }
 
     const quarterContainers = [];
-    while (deltaFilling > QUARTER_CONTAINER_ITEMS) {
+    while (deltaFilling > QUARTER_CONTAINER_ITEMS + 1) {
         // cast as quarter item
         quarterContainers.push({ item: data.pop(), size: 'm' });
         deltaFilling -= QUARTER_CONTAINER_ITEMS - 1; // trade 1 item for 3 spaces

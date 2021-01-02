@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <title>Gallery</title>
     <style>
+        :root {
+            --smallThumbSize: 30px;
+            --smallThumbMargin: 5px;
+        }
+
         #gallery {
-            width: 600px;
+            width: 100vw;
             height: 600px;
+            margin-top: 50px;
             display: inline-block;
             position: relative;
+            align-content: center;
         }
 
         #gallery.selected-mode #thumb-container {
@@ -73,21 +80,21 @@
         }
 
         #thumb-container .thumb.s {
-            width: 15px;
-            height: 15px;
-            margin: 2px;
+            width: var(--smallThumbSize);
+            height: var(--smallThumbSize);
+            margin: var(--smallThumbMargin);
         }
 
         #thumb-container .thumb.m {
-            width: 30px;
-            height: 30px;
-            margin: 4px;
+            width: calc(var(--smallThumbSize) * 2);
+            height: calc(var(--smallThumbSize) * 2);
+            margin: calc(var(--smallThumbMargin) * 2);
         }
 
         #thumb-container .thumb.l {
-            width: 60px;
-            height: 60px;
-            margin: 8px;
+            width: calc(var(--smallThumbSize) * 2 * 2);
+            height: calc(var(--smallThumbSize) * 2 * 2);
+            margin: calc(var(--smallThumbMargin) * 2 * 2);
         }
 
         #thumb-container .row {
@@ -95,7 +102,7 @@
             flex-direction: row;
             width: 100%;
             flex-wrap: wrap;
-            height: 76px;
+            height: calc(var(--smallThumbSize) * 2 * 2 + var(--smallThumbMargin) * 2 * 2 * 2);
         }
 
         .grid-container {
@@ -106,13 +113,13 @@
         }
 
         .grid-container.full {
-            width: 76px;
-            height: 76px;
+            width: calc(var(--smallThumbSize) * 2 * 2 + var(--smallThumbMargin) * 2 * 2 * 2);
+            height: calc(var(--smallThumbSize) * 2 * 2 + var(--smallThumbMargin) * 2 * 2 * 2);
         }
 
         .grid-container.quarter {
-            width: 38px;
-            height: 38px;
+            width: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
+            height: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
         }
 
         #full-image {
@@ -129,6 +136,8 @@
     </style>
 </head>
 <body>
+    <button id="regenerate">Re-generate thumbs</button> with <input type="number" id="numThumbs" value="120" /> sample items and a thumb size of
+    <input id="thumbSize" type="range" min="10" max="60" value="15" />
     <div id="gallery">
         <div id="thumb-container"></div>
         <div id="full-view">
@@ -141,16 +150,14 @@
         </div>
     </div>
     <script type="module">
-        import { render } from 'lit-html';
-        import {template, generateSampleData, addInteractivity} from '../src/gallery';
+        import {renderGallery, addInteractivity} from './gallery.js';
 
-        const blockSize = 76; // synchronize with full container size
         const container = document.getElementById('thumb-container');
-        const numColumns = parseInt( container.getBoundingClientRect().width / blockSize );
-        render(template(generateSampleData(373), numColumns), container);
+        document.getElementById('regenerate').addEventListener( 'click', () => renderGallery(container) );
+        renderGallery(container);
+
         addInteractivity(container, id => {
             document.getElementById('gallery').classList.toggle('selected-mode')
-            console.log(document.getElementById('full-image'))
             document.getElementById('full-image').style.backgroundImage = `url("./sampleimages/full.jpeg")`;
         });
     </script>
