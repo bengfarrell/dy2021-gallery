@@ -4,79 +4,97 @@
     <meta charset="UTF-8">
     <title>Gallery</title>
     <style>
+        body {
+            margin: 0;
+        }
+
         :root {
-            --smallThumbSize: 30px;
-            --smallThumbMargin: 5px;
+            --smallThumbSize: 78px;
+            --smallThumbMargin: 13px;
         }
 
         #gallery {
             width: 100vw;
-            height: 600px;
-            margin-top: 50px;
+            height: 100vh;
             display: inline-block;
             position: relative;
             align-content: center;
         }
 
-        #gallery.selected-mode #thumb-container {
-            display: none;
-        }
-
-        #gallery:not(.selected-mode) #full-view {
-            display: none;
-        }
-
-        #thumb-container,
-        #full-view {
+        #thumb-container {
             display: inline;
             position: absolute;
             width: 100%;
             height: 100%;
+            transform: translate(0, 0);
+            transition: transform 500ms ease-in;
         }
 
-        #full-view {
-            display: flex;
-            width: 100%;
-            align-items: center;
-        }
-
-        #full-view .info {
-            display: flex;
+        #info {
             flex-direction: column;
             font-size: 16px;
+            position: fixed;
             font-family: sans-serif;
-            margin-left: auto;
-            margin-bottom: 10px;
+            top: 45%;
+            left: 60%;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 500ms ease-in;
         }
 
-        #full-view .info button {
-            width: 150px;
+        .selected-mode #info {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 500ms ease-in;
+        }
+
+        #info button {
             font-size: 24px;
-            font-family: sans-serif;
-            color: white;
-            background-color: #00D5BC;
-            border-radius: 30px;
-            border: none;
+            width: 150px;
             margin-top: 15px;
             padding: 10px;
         }
 
+        button {
+            font-family: sans-serif;
+            color: white;
+            border-radius: 60px;
+            border: none;
+            background-color: #00D5BC;
+            font-size: 48px;
+        }
+
+        #close-btn {
+            top: 5%;
+            right: 5%;
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            transform: scale(0, 0);
+            transition: transform 500ms ease-in;
+        }
+
+        .selected-mode #close-btn {
+            transform: scale(1, 1);
+            transition: transform 500ms ease-in;
+        }
+
         #thumb-container .thumb {
-            border-radius: 100px;
+            border-radius: 200px;
             background-color: #EAEAEA;
-            filter: saturate(20%);
+            filter: saturate(10%);
+            transition: transform 100ms ease-in;
         }
 
         #thumb-container .thumb:hover {
-            transform: scale(2.5, 2.5);
-            position: relative;
-            z-index: 9999;
+            transform: scale(1.2, 1.2);
             filter: saturate(100%);
         }
 
         #gallery.selected-mode .thumb {
             transform: scale(0, 0);
-            transition: transform 500ms ease-in
+            transition: transform 100ms ease-in;
         }
 
         #thumb-container .thumb.s {
@@ -101,6 +119,8 @@
             display: flex;
             flex-direction: row;
             width: 100%;
+            margin-right: auto;
+            margin-left: auto;
             flex-wrap: wrap;
             height: calc(var(--smallThumbSize) * 2 * 2 + var(--smallThumbMargin) * 2 * 2 * 2);
         }
@@ -125,41 +145,50 @@
         #full-image {
             width: 50%;
             height: 100%;
+            background-color: black;
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
+            position: fixed;
         }
 
-        #container.selected-mode #full-view {
-            height: 100%;
+        #gallery:not(.selected-mode) #full-image {
+            transform: translate(-100%, 0);
+            transition: transform 500ms ease-in;
+        }
+
+        #gallery.selected-mode #full-image {
+            transform: translate(0, 0);
+            transition: transform 500ms ease-in;
         }
     </style>
 </head>
 <body>
-    <button id="regenerate">Re-generate thumbs</button> with <input type="number" id="numThumbs" value="120" /> sample items and a thumb size of
-    <input id="thumbSize" type="range" min="10" max="60" value="15" />
-    <div id="gallery">
-        <div id="thumb-container"></div>
-        <div id="full-view">
-            <div id="full-image"></div>
-            <div class="info">
-                <h3>Created by:</h3>
-                <span>Kelly H.</span>
-                <button>Remix It!</button>
-            </div>
-        </div>
+
+<div id="gallery">
+    <div id="thumb-container"></div>
+    <button id="close-btn">x</button>
+    <div id="full-image"></div>
+    <div id="info">
+        <h3>Created by:</h3>
+        <span>Kelly H.</span>
+        <button>Remix It!</button>
     </div>
-    <script type="module">
-        import {renderGallery, addInteractivity} from './gallery.js';
+</div>
+<script type="module">
+    import {renderGallery, addInteractivity} from '../src/gallery.js';
 
-        const container = document.getElementById('thumb-container');
-        document.getElementById('regenerate').addEventListener( 'click', () => renderGallery(container) );
-        renderGallery(container);
+    const container = document.getElementById('thumb-container');
+    renderGallery(container);
 
-        addInteractivity(container, id => {
-            document.getElementById('gallery').classList.toggle('selected-mode')
-            document.getElementById('full-image').style.backgroundImage = `url("./sampleimages/full.jpeg")`;
-        });
-    </script>
+    addInteractivity(container, id => {
+        document.getElementById('gallery').classList.toggle('selected-mode', true);
+        document.getElementById('full-image').style.backgroundImage = `url("./sampleimages/full.jpeg")`;
+    });
+
+    document.getElementById('close-btn').addEventListener('click', () => {
+        document.getElementById('gallery').classList.toggle('selected-mode', false);
+    });
+</script>
 </body>
 </html>
