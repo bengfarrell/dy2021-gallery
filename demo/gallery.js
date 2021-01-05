@@ -1161,15 +1161,11 @@ const QUARTER_CONTAINER_ITEMS = 4;
 const FULL_CONTAINER_ITEMS = 4;
 
 const renderGallery = (container) => {
-    const thumbSize = document.getElementById('thumbSize').value;
+    const thumbSize = 78;
     const thumbMargin = parseInt(thumbSize / 6);
     const blockSize = thumbSize * 2 * 2 + thumbMargin * 2 * 2 * 2; // synchronize with full container size
     const numColumns = parseInt( container.getBoundingClientRect().width / blockSize );
-    const numThumbs = document.getElementById('numThumbs').value;
-
-    document.documentElement.style.setProperty('--smallThumbSize', thumbSize + "px");
-    document.documentElement.style.setProperty('--smallThumbMargin', parseInt(thumbSize / 6) + "px");
-    render(template(generateSampleData(numThumbs), numColumns), container);
+    render(template(generateSampleData(200), numColumns), container);
 };
 
 const template = (data, numColumns) => {
