@@ -15,6 +15,6 @@
   "scripts": {
     "dev": "./node_modules/.bin/web-dev-server --node-resolve --open=index.html --watch",
     "build": "./node_modules/.bin/rollup -c rollup.config.js",
-    "deploy": "./node_modules/.bin/gh-pages -d demo"
+    "deploy": "./node_modules/.bin/gh-pages -d dist"
   }
 }
