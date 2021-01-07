@@ -1,12 +1,16 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import html from '@web/rollup-plugin-html';
+import copy from 'rollup-plugin-copy';
 
-export default [{
-        input: 'src/gallery.js',
-        output: {
-            file: 'demo/gallery.js',
-            format: 'es',
-            name: 'gallery'
-        },
-        plugins: [nodeResolve()]
-    }
-];
+export default {
+    input: 'index.html',
+    output: { dir: 'dist' },
+    plugins: [
+        nodeResolve(),
+        html(),
+        copy({
+            targets: [
+                { src: 'sampleimages', dest: 'dist/' },
+            ]
+        })],
+};

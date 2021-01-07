@@ -8,10 +8,12 @@
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@web/dev-server": "0.0.25",
     "gh-pages": "^3.1.0",
-    "rollup": "^2.34.2"
+    "rollup": "^2.34.2",
+    "@web/rollup-plugin-html": "^1.3.3",
+    "rollup-plugin-copy": "^3.3.0"
   },
   "scripts": {
-    "demo": "./node_modules/.bin/web-dev-server --node-resolve --open=./demo/index.html --watch",
+    "dev": "./node_modules/.bin/web-dev-server --node-resolve --open=index.html --watch",
     "build": "./node_modules/.bin/rollup -c rollup.config.js",
     "deploy": "./node_modules/.bin/gh-pages -d demo"
   }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="gallery.css" />
+    <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+
+<div id="header">
+    <div class="logo">deYoungsters art party</div>
+    <div>About</div>
+    <div>Help</div>
+</div>
+
+<div id="banner">
+    <div class="decoration-dot-container"><div class="decoration-dot"></div></div>
+    <div class="main-content">
+        <h1>Remix <br />&nbsp;&nbsp;&nbsp;&nbsp;Gallery</h1>
+        <div class="action-box">
+            <span>Mix and match artists' creations to make <br/> your own halftone masterpieces</span>
+            <div id="action-buttons">
+                <button>Upload an image</button>
+                <button>Start from the gallery</button>
+            </div>
+        </div>
+    </div>
+    <div class="decoration-dot-container"><div class="decoration-dot"></div></div>
+</div>
+
+<div id="gallery">
+    <div id="thumb-container"></div>
+    <button id="close-btn">x</button>
+    <div id="full-image"></div>
+    <div id="info">
+        <h3>Created by:</h3>
+        <span>Kelly H.</span>
+        <button>Remix It!</button>
+    </div>
+</div>
+<script type="module">
+    import {renderGallery, addInteractivity} from './src/gallery.js';
+
+    const container = document.getElementById('thumb-container');
+    window.addEventListener('resize', () => {
+        renderGallery(container);
+    });
+    renderGallery(container);
+
+    addInteractivity(container, id => {
+        document.getElementById('gallery').classList.toggle('selected-mode', true);
+        document.getElementById('full-image').style.backgroundImage = `url("./sampleimages/full.jpeg")`;
+    });
+
+    document.getElementById('close-btn').addEventListener('click', () => {
+        document.getElementById('gallery').classList.toggle('selected-mode', false);
+    });
+</script>
+</body>
+</html>
