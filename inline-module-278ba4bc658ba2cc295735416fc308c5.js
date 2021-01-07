@@ -1158,13 +1158,31 @@ if (typeof window !== 'undefined') {
 const html = (strings, ...values) => new TemplateResult(strings, values, 'html', defaultTemplateProcessor);
 
 const QUARTER_CONTAINER_ITEMS = 4;
-const FULL_CONTAINER_ITEMS = 4;
 
 const renderGallery = (container) => {
-    const thumbSize = 78;
-    const thumbMargin = parseInt(thumbSize / 6);
-    const blockSize = thumbSize * 2 * 2 + thumbMargin * 2 * 2 * 2; // synchronize with full container size
-    const numColumns = parseInt( container.getBoundingClientRect().width / blockSize );
+    let thumbSize = 78;
+    let thumbMargin = parseInt(thumbSize / 6);
+    let blockSize = thumbSize * 2 + thumbMargin * 2 * 2; // synchronize with full container size
+
+
+    let numColumns;
+    const colsfloat = container.getBoundingClientRect().width / blockSize;
+    if (Math.ceil(colsfloat) - colsfloat < .5) {
+        // smaller size change accomplished by rounding up
+        numColumns = Math.ceil(colsfloat);
+    } else {
+        // smaller size change accomplished by rounding down
+        numColumns = Math.floor(colsfloat);
+    }
+
+    // reverse above calculations to get new sizes that exactly fit container
+    blockSize = Math.floor(container.getBoundingClientRect().width / numColumns);
+    thumbSize = (3 * blockSize) / 8;
+    thumbMargin = thumbSize / 6;
+
+    document.documentElement.style.setProperty('--smallThumbSize', thumbSize + 'px');
+    document.documentElement.style.setProperty('--smallThumbMargin', thumbMargin + 'px');
+
     render(template(generateSampleData(200), numColumns), container);
 };
 
@@ -1203,32 +1221,19 @@ const renderContainer = (container) => {
 const containerizeData = (data, columns) => {
     const predictedQuarterContainers = Math.ceil(data.length / QUARTER_CONTAINER_ITEMS);
     // const amtToFillLastQuarter = data.length % QUARTER_CONTAINER_ITEMS;
-    const predictedFullContainers = Math.ceil(predictedQuarterContainers / FULL_CONTAINER_ITEMS);
-    // const amtToFillLastFull = FULL_CONTAINER_ITEMS - predictedQuarterContainers % FULL_CONTAINER_ITEMS;
-    const predictedRows = Math.ceil(predictedFullContainers / columns);
-    // const amtToFillLastRow = columns - predictedFullContainers % columns;
-    const numSmallToFillEvenly = predictedRows * QUARTER_CONTAINER_ITEMS * FULL_CONTAINER_ITEMS * columns;
+    const predictedRows = Math.ceil(predictedQuarterContainers / columns);
+    const numSmallToFillEvenly = predictedRows * QUARTER_CONTAINER_ITEMS * columns;
 
-    /* console.log('predictions for ', columns, ' columns');
+    /*console.log('predictions for ', columns, ' columns');
     console.log('fill last quarter: ', amtToFillLastQuarter);
-    console.log('fill last full: ', amtToFillLastFull);
     console.log('fill last row: ', amtToFillLastRow);
     console.log('num rows: ', predictedRows);
     console.log('to fill evenly:', numSmallToFillEvenly);
-    console.log('delta: ', numSmallToFillEvenly - data.length); */
+    console.log('delta: ', numSmallToFillEvenly - data.length);*/
 
     // delta filling is the remainder of small dots we'd need to fill the last row evenly
     // instead of small dots, we'll be filling with larger dots to try to round out the result
     let deltaFilling = numSmallToFillEvenly - data.length;
-    let originalDeltaFilling = deltaFilling;
-
-    const fullContainers = [];
-    // limit the big ones to half the fill weight so we don't go overboard
-    while (deltaFilling > QUARTER_CONTAINER_ITEMS * FULL_CONTAINER_ITEMS + 1 && deltaFilling > originalDeltaFilling / 2) {
-        // cast as quarter item
-        fullContainers.push({ item: data.pop(), size: 'l' });
-        deltaFilling -= QUARTER_CONTAINER_ITEMS * FULL_CONTAINER_ITEMS - 1; // trade 1 item for 15 spaces
-    }
 
     const quarterContainers = [];
     while (deltaFilling > QUARTER_CONTAINER_ITEMS + 1) {
@@ -1255,21 +1260,9 @@ const containerizeData = (data, columns) => {
         currentQuarterContainer.items.push( { item, size: 's'} );
     });
 
-    // fill full size containers
-    shuffleArray(quarterContainers).forEach( qt => {
-        let currentFullContainer = fullContainers[fullContainers.length - 1];
-        if (!currentFullContainer ||
-            !currentFullContainer.items ||
-            currentFullContainer.items.length >= FULL_CONTAINER_ITEMS ) {
-            currentFullContainer = {type: 'container', size: 'full', items: []};
-            fullContainers.push(currentFullContainer);
-        }
-        currentFullContainer.items.push(qt);
-    });
-
     // now organize into rows
     const rows = [ [] ];
-    shuffleArray(fullContainers).forEach( cont => {
+    shuffleArray(quarterContainers).forEach( cont => {
         let currentRow = rows[rows.length - 1];
         if (currentRow.length >= columns) {
             currentRow = [];
@@ -1296,4 +1289,17 @@ const generateSampleData = (numItems) => {
     return results;
 };
 
-export { addInteractivity, generateSampleData, renderGallery, template };
+const container = document.getElementById('thumb-container');
+    window.addEventListener('resize', () => {
+        renderGallery(container);
+    });
+    renderGallery(container);
+
+    addInteractivity(container, id => {
+        document.getElementById('gallery').classList.toggle('selected-mode', true);
+        document.getElementById('full-image').style.backgroundImage = `url("./sampleimages/full.jpeg")`;
+    });
+
+    document.getElementById('close-btn').addEventListener('click', () => {
+        document.getElementById('gallery').classList.toggle('selected-mode', false);
+    });

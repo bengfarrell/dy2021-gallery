@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#header {
+    position: fixed;
+    display: flex;
+    width: 100%;
+}
+
+#banner {
+    position: relative;
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-top: 75px;
+    padding-bottom: 25px;
+}
+
+#banner .main-content {
+    width: 70%;
+}
+
+#banner .decoration-dot-container {
+    width: 15%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#banner .decoration-dot {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    background-color: orange;
+}
+
+#banner .decoration-dot.left {
+    left: 0;
+}
+
+#banner .decoration-dot.right {
+    right: 0;
+}
+
+#banner h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: auto;
+    font-size: 72px;
+}
+
+#banner .main-content {
+    display: flex;
+}
+
+#banner .main-content .action-box {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+#banner button {
+    font-size: 12px;
+    width: 100px;
+    height: 100px;
+    border-radius: 300px;
+    margin-top: 25px;
+    margin-right: 25px;
+}
+
+#header .logo {
+    margin-right: auto;
+}

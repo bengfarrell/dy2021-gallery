@@ -1,169 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <title>Gallery</title>
-    <style>
-        body {
-            margin: 0;
-        }
-
-        :root {
-            --smallThumbSize: 78px;
-            --smallThumbMargin: 13px;
-        }
-
-        #gallery {
-            width: 100vw;
-            height: 100vh;
-            display: inline-block;
-            position: relative;
-            align-content: center;
-        }
-
-        #thumb-container {
-            display: inline;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transform: translate(0, 0);
-            transition: transform 500ms ease-in;
-        }
-
-        #info {
-            flex-direction: column;
-            font-size: 16px;
-            position: fixed;
-            font-family: sans-serif;
-            top: 45%;
-            left: 60%;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 500ms ease-in;
-        }
-
-        .selected-mode #info {
-            display: flex;
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 500ms ease-in;
-        }
-
-        #info button {
-            font-size: 24px;
-            width: 150px;
-            margin-top: 15px;
-            padding: 10px;
-        }
-
-        button {
-            font-family: sans-serif;
-            color: white;
-            border-radius: 60px;
-            border: none;
-            background-color: #00D5BC;
-            font-size: 48px;
-        }
-
-        #close-btn {
-            top: 5%;
-            right: 5%;
-            position: fixed;
-            width: 100px;
-            height: 100px;
-            transform: scale(0, 0);
-            transition: transform 500ms ease-in;
-        }
-
-        .selected-mode #close-btn {
-            transform: scale(1, 1);
-            transition: transform 500ms ease-in;
-        }
-
-        #thumb-container .thumb {
-            border-radius: 200px;
-            background-color: #EAEAEA;
-            filter: saturate(10%);
-            transition: transform 100ms ease-in;
-        }
-
-        #thumb-container .thumb:hover {
-            transform: scale(1.2, 1.2);
-            filter: saturate(100%);
-        }
-
-        #gallery.selected-mode .thumb {
-            transform: scale(0, 0);
-            transition: transform 100ms ease-in;
-        }
-
-        #thumb-container .thumb.s {
-            width: var(--smallThumbSize);
-            height: var(--smallThumbSize);
-            margin: var(--smallThumbMargin);
-        }
-
-        #thumb-container .thumb.m {
-            width: calc(var(--smallThumbSize) * 2);
-            height: calc(var(--smallThumbSize) * 2);
-            margin: calc(var(--smallThumbMargin) * 2);
-        }
-
-        #thumb-container .thumb.l {
-            width: calc(var(--smallThumbSize) * 2 * 2);
-            height: calc(var(--smallThumbSize) * 2 * 2);
-            margin: calc(var(--smallThumbMargin) * 2 * 2);
-        }
-
-        #thumb-container .row {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            margin-right: auto;
-            margin-left: auto;
-            flex-wrap: wrap;
-            height: calc(var(--smallThumbSize) * 2 * 2 + var(--smallThumbMargin) * 2 * 2 * 2);
-        }
-
-        .grid-container {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-            justify-content: center;
-        }
-
-        .grid-container.full {
-            width: calc(var(--smallThumbSize) * 2 * 2 + var(--smallThumbMargin) * 2 * 2 * 2);
-            height: calc(var(--smallThumbSize) * 2 * 2 + var(--smallThumbMargin) * 2 * 2 * 2);
-        }
-
-        .grid-container.quarter {
-            width: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
-            height: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
-        }
-
-        #full-image {
-            width: 50%;
-            height: 100%;
-            background-color: black;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            position: fixed;
-        }
-
-        #gallery:not(.selected-mode) #full-image {
-            transform: translate(-100%, 0);
-            transition: transform 500ms ease-in;
-        }
-
-        #gallery.selected-mode #full-image {
-            transform: translate(0, 0);
-            transition: transform 500ms ease-in;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/gallery-8d236cdd.css">
+    <link rel="stylesheet" href="assets/main-e9b882f7.css">
 </head>
 <body>
+
+<div id="header">
+    <div class="logo">deYoungsters art party</div>
+    <div>About</div>
+    <div>Help</div>
+</div>
+
+<div id="banner">
+    <div class="decoration-dot-container"><div class="decoration-dot"></div></div>
+    <div class="main-content">
+        <h1>Remix <br>&nbsp;&nbsp;&nbsp;&nbsp;Gallery</h1>
+        <div class="action-box">
+            <span>Mix and match artists' creations to make <br> your own halftone masterpieces</span>
+            <div id="action-buttons">
+                <button>Upload an image</button>
+                <button>Start from the gallery</button>
+            </div>
+        </div>
+    </div>
+    <div class="decoration-dot-container"><div class="decoration-dot"></div></div>
+</div>
 
 <div id="gallery">
     <div id="thumb-container"></div>
@@ -175,20 +37,7 @@
         <button>Remix It!</button>
     </div>
 </div>
-<script type="module">
-    import {renderGallery, addInteractivity} from './gallery.js';
 
-    const container = document.getElementById('thumb-container');
-    renderGallery(container);
 
-    addInteractivity(container, id => {
-        document.getElementById('gallery').classList.toggle('selected-mode', true);
-        document.getElementById('full-image').style.backgroundImage = `url("./sampleimages/full.jpeg")`;
-    });
 
-    document.getElementById('close-btn').addEventListener('click', () => {
-        document.getElementById('gallery').classList.toggle('selected-mode', false);
-    });
-</script>
-</body>
-</html>
+<script type="module" src="./inline-module-278ba4bc658ba2cc295735416fc308c5.js"></script></body></html>
