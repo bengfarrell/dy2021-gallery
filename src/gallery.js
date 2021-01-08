@@ -52,7 +52,7 @@ const renderItem = (item) => {
     if (item.type === 'container') {
         return html`${renderContainer(item)}`;
     }
-    return html`<div data-id="${item.item.id}" class="thumb ${item.size}" style="background-image: url('${item.item.thumb}')"></div>`;
+    return html`<div data-id="${item.item.id}" class="thumb ${item.size} anim${Math.floor(Math.random() * 10)}" style="background-image: url('${item.item.thumb}')"></div>`;
 }
 
 const renderContainer = (container) => {
@@ -62,45 +62,33 @@ const renderContainer = (container) => {
 }
 
 const containerizeData = (data, columns) => {
-    const predictedQuarterContainers = Math.ceil(data.length / QUARTER_CONTAINER_ITEMS);
-    // const amtToFillLastQuarter = data.length % QUARTER_CONTAINER_ITEMS;
-    const predictedRows = Math.ceil(predictedQuarterContainers / columns);
-    const numSmallToFillEvenly = predictedRows * QUARTER_CONTAINER_ITEMS * columns;
+    // see how many quarter containers we can evenly fill
+    let numQuarterContainers = Math.floor(data.length / QUARTER_CONTAINER_ITEMS);
 
-    /*console.log('predictions for ', columns, ' columns');
-    console.log('fill last quarter: ', amtToFillLastQuarter);
-    console.log('fill last row: ', amtToFillLastRow);
-    console.log('num rows: ', predictedRows);
-    console.log('to fill evenly:', numSmallToFillEvenly);
-    console.log('delta: ', numSmallToFillEvenly - data.length);*/
+    // start with items left over from dividing into 4x boxes for num of large items
+    let largeItems = data.length % QUARTER_CONTAINER_ITEMS;
 
-    // delta filling is the remainder of small dots we'd need to fill the last row evenly
-    // instead of small dots, we'll be filling with larger dots to try to round out the result
-    let deltaFilling = numSmallToFillEvenly - data.length;
+    // ratio big dots to 4x container
+    const ratio = 1/21;
+    while (largeItems / (numQuarterContainers * QUARTER_CONTAINER_ITEMS) < ratio) {
+        numQuarterContainers --;
+        largeItems += 4;
+    }
 
     const quarterContainers = [];
-    while (deltaFilling > QUARTER_CONTAINER_ITEMS + 1) {
-        // cast as quarter item
-        quarterContainers.push({ item: data.pop(), size: 'm' });
-        deltaFilling -= QUARTER_CONTAINER_ITEMS - 1; // trade 1 item for 3 spaces
-    }
-
-    // still not perfectly even? make some duplicate small items, there should be 3 at most
-    while (deltaFilling > 0) {
-        data.push(data[deltaFilling]);
-        deltaFilling --;
-    }
-
-    // fill quarter containers
-    data.forEach(item => {
-        let currentQuarterContainer = quarterContainers[quarterContainers.length - 1];
-        if (!currentQuarterContainer ||
-            !currentQuarterContainer.items ||
-            currentQuarterContainer.items.length >= QUARTER_CONTAINER_ITEMS ) {
-            currentQuarterContainer = {type: 'container', size: 'quarter', items: []};
-            quarterContainers.push(currentQuarterContainer);
+    data.forEach( (item, index) => {
+        if (index <= largeItems) {
+            quarterContainers.push({ item: item, size: 'm' });
+        } else {
+            let currentQuarterContainer = quarterContainers[quarterContainers.length - 1];
+            if (!currentQuarterContainer ||
+                !currentQuarterContainer.items ||
+                currentQuarterContainer.items.length >= QUARTER_CONTAINER_ITEMS ) {
+                currentQuarterContainer = {type: 'container', size: 'quarter', items: []};
+                quarterContainers.push(currentQuarterContainer);
+            }
+            currentQuarterContainer.items.push( { item, size: 's'} );
         }
-        currentQuarterContainer.items.push( { item, size: 's'} );
     });
 
     // now organize into rows

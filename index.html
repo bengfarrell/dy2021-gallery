@@ -8,10 +8,11 @@
 </head>
 <body>
 
+<div id="scroll-progress"></div>
 <div id="header">
-    <div class="logo">deYoungsters art party</div>
-    <div>About</div>
-    <div>Help</div>
+    <img class="logo" src="assets/deyoungsters-logo.png" width="150" height="75" />
+    <a href="google.com">About</a>
+    <a href="google.com">Help</a>
 </div>
 
 <div id="banner">
@@ -21,8 +22,18 @@
         <div class="action-box">
             <span>Mix and match artists' creations to make <br/> your own halftone masterpieces</span>
             <div id="action-buttons">
-                <button>Upload an image</button>
-                <button>Start from the gallery</button>
+                <button class="upload">
+                    <br />
+                    <label>Upload an image</label>
+                    <br />
+                    <img src="assets/upload.svg" />
+                </button>
+                <button class="gallery">
+                    <br />
+                    <label>Start from the gallery</label>
+                    <br />
+                    <img src="assets/gallery.svg" />
+                </button>
             </div>
         </div>
     </div>
@@ -46,6 +57,14 @@
     window.addEventListener('resize', () => {
         renderGallery(container);
     });
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('scroll-progress').style.width = scrolled + "%";
+    })
+
     renderGallery(container);
 
     addInteractivity(container, id => {
