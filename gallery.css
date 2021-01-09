@@ -73,13 +73,11 @@ button {
 #thumb-container .thumb {
     border-radius: 200px;
     background-color: #EAEAEA;
-    filter: saturate(10%);
     transition: transform 100ms ease-in;
 }
 
 #thumb-container .thumb:hover {
     transform: scale(1.2, 1.2);
-    filter: saturate(100%);
 }
 
 #gallery.selected-mode .thumb {
@@ -141,45 +139,43 @@ button {
     transition: transform 500ms ease-in;
 }
 
-
-
-#thumb-container .thumb.anim0 {
+#thumb-container .thumb.anim0:not(:hover) {
     animation: randomMovement0 5s infinite;
 }
 
-#thumb-container .thumb.anim1 {
+#thumb-container .thumb.anim1:not(:hover) {
     animation: randomMovement1 4.1s infinite;
 }
 
-#thumb-container .thumb.anim2 {
+#thumb-container .thumb.anim2:not(:hover) {
     animation: randomMovement2 6.7s infinite;
 }
 
-#thumb-container .thumb.anim3 {
+#thumb-container .thumb.anim3:not(:hover) {
     animation: randomMovement3 7.2s infinite;
 }
 
-#thumb-container .thumb.anim4 {
+#thumb-container .thumb.anim4:not(:hover) {
     animation: randomMovement4 2.9s infinite;
 }
 
-#thumb-container .thumb.anim5 {
+#thumb-container .thumb.anim5:not(:hover) {
     animation: randomMovement5 10.1s infinite;
 }
 
-#thumb-container .thumb.anim6 {
+#thumb-container .thumb.anim6:not(:hover) {
     animation: randomMovement6 8.5s infinite;
 }
 
-#thumb-container .thumb.anim7 {
+#thumb-container .thumb.anim7:not(:hover) {
     animation: randomMovement7 5.7s infinite;
 }
 
-#thumb-container .thumb.anim8 {
+#thumb-container .thumb.anim8:not(:hover) {
     animation: randomMovement8 2.1s infinite;
 }
 
-#thumb-container .thumb.anim9 {
+#thumb-container .thumb.anim9:not(:hover) {
     animation: randomMovement9 1.7s infinite;
 }
 
