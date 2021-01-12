@@ -3,7 +3,7 @@ import {html, render} from 'lit-html';
 const QUARTER_CONTAINER_ITEMS = 4;
 
 export const renderGallery = (container) => {
-    let thumbSize = 78;
+    let thumbSize = 39 * window.devicePixelRatio;
     let thumbMargin = parseInt(thumbSize / 6);
     let blockSize = thumbSize * 2 + thumbMargin * 2 * 2; // synchronize with full container size
 

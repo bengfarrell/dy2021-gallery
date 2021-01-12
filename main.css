@@ -43,21 +43,9 @@ body {
 }
 
 #banner .main-content {
+    margin-left: 15%;
+    margin-right: 15%;
     width: 70%;
-}
-
-#banner .decoration-dot-container {
-    width: 15%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-#banner .decoration-dot {
-    width: 75px;
-    height: 75px;
-    border-radius: 100px;
-    background-color: orange;
 }
 
 #banner h1 {
@@ -95,8 +83,16 @@ body {
     background-color: #10B79B;
 }
 
+#banner button.upload:hover {
+    background-color: #0c816e;
+}
+
 #banner button.gallery {
     background-color: #9272B8;
+}
+
+#banner button.gallery:hover {
+    background-color: #58456e;
 }
 
 #header .logo {

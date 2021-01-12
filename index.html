@@ -11,12 +11,11 @@
 <div id="scroll-progress"></div>
 <div id="header">
     <img class="logo" src="assets/deyoungsters-logo.svg" width="150" height="75" />
-    <a href="google.com">About</a>
-    <a href="google.com">Help</a>
+    <a href="">About</a>
+    <a href="">Help</a>
 </div>
 
 <div id="banner">
-    <div class="decoration-dot-container"><div class="decoration-dot"></div></div>
     <div class="main-content">
         <h1>Remix <br />&nbsp;&nbsp;&nbsp;&nbsp;Gallery</h1>
         <div class="action-box">
@@ -28,7 +27,7 @@
                     <br />
                     <img src="assets/upload.svg" />
                 </button>
-                <button class="gallery">
+                <button class="gallery" id="gallery-button">
                     <br />
                     <label>Start from the gallery</label>
                     <br />
@@ -37,7 +36,6 @@
             </div>
         </div>
     </div>
-    <div class="decoration-dot-container"><div class="decoration-dot"></div></div>
 </div>
 
 <div id="gallery">
@@ -75,6 +73,13 @@
     document.getElementById('close-btn').addEventListener('click', () => {
         document.getElementById('gallery').classList.toggle('selected-mode', false);
     });
+
+    document.getElementById('gallery-button').addEventListener('click', () =>
+        document.getElementById('gallery-button').scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest"
+        }));
 </script>
 </body>
 </html>
