@@ -49,7 +49,7 @@
     </div>
 </div>
 <script type="module">
-    import {renderGallery, addInteractivity} from './src/gallery.js';
+    import {renderGallery, addInteractivity, getAssetImage} from './src/gallery.js';
 
     const container = document.getElementById('thumb-container');
     window.addEventListener('resize', () => {
@@ -65,9 +65,9 @@
 
     renderGallery(container);
 
-    addInteractivity(container, id => {
+    addInteractivity(container, asset => {
         document.getElementById('gallery').classList.toggle('selected-mode', true);
-        document.getElementById('full-image').style.backgroundImage = `url("./sampleimages/full.jpeg")`;
+        document.getElementById('full-image').style.backgroundImage = `url(${getAssetImage(asset, 'full')})`;
     });
 
     document.getElementById('close-btn').addEventListener('click', () => {
