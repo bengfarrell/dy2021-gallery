@@ -1,0 +1,164 @@
+:root {
+    --smallThumbSize: 78px;
+    --smallThumbMargin: 13px;
+}
+
+#gallery {
+    width: 100vw;
+    display: inline-block;
+    position: relative;
+    align-content: center;
+}
+
+#thumb-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translate(0, 0);
+    transition: transform 500ms ease-in;
+}
+
+#thumb-container .thumb {
+    border-radius: 200px;
+    background-color: #EAEAEA;
+    transition: transform 100ms ease-in;
+}
+
+#thumb-container .thumb:hover {
+    transform: scale(1.2, 1.2);
+}
+
+#thumb-container .thumb.s {
+    width: var(--smallThumbSize);
+    height: var(--smallThumbSize);
+    margin: var(--smallThumbMargin);
+}
+
+#thumb-container .thumb.m {
+    width: calc(var(--smallThumbSize) * 2);
+    height: calc(var(--smallThumbSize) * 2);
+    margin: calc(var(--smallThumbMargin) * 2);
+}
+
+#thumb-container .row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    flex-wrap: wrap;
+    height: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.grid-container.quarter {
+    width: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
+    height: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
+}
+
+#thumb-container .thumb.anim0:not(:hover) {
+    animation: randomMovement0 5s infinite;
+}
+
+#thumb-container .thumb.anim1:not(:hover) {
+    animation: randomMovement1 4.1s infinite;
+}
+
+#thumb-container .thumb.anim2:not(:hover) {
+    animation: randomMovement2 6.7s infinite;
+}
+
+#thumb-container .thumb.anim3:not(:hover) {
+    animation: randomMovement3 7.2s infinite;
+}
+
+#thumb-container .thumb.anim4:not(:hover) {
+    animation: randomMovement4 2.9s infinite;
+}
+
+#thumb-container .thumb.anim5:not(:hover) {
+    animation: randomMovement5 10.1s infinite;
+}
+
+#thumb-container .thumb.anim6:not(:hover) {
+    animation: randomMovement6 8.5s infinite;
+}
+
+#thumb-container .thumb.anim7:not(:hover) {
+    animation: randomMovement7 5.7s infinite;
+}
+
+#thumb-container .thumb.anim8:not(:hover) {
+    animation: randomMovement8 2.1s infinite;
+}
+
+#thumb-container .thumb.anim9:not(:hover) {
+    animation: randomMovement9 1.7s infinite;
+}
+
+@keyframes randomMovement0 {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(5px, 9px) }
+    100% { transform: translate(0px, 0px) }
+}
+
+@keyframes randomMovement1 {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(3px, 4px) }
+    100% { transform: translate(0px, 0px) }
+}
+
+@keyframes randomMovement2 {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(9px, 1px) }
+    100% { transform: translate(0px, 0px) }
+}
+
+@keyframes randomMovement3 {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(-4px, 5px) }
+    100% { transform: translate(0px, 0px) }
+}
+
+@keyframes randomMovement4 {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(-2px, 6px) }
+    100% { transform: translate(0px, 0px) }
+}
+
+@keyframes randomMovement5 {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(4px, -8px) }
+    100% { transform: translate(0px, 0px) }
+}
+
+@keyframes randomMovement6 {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(-3px, -8px) }
+    100% { transform: translate(0px, 0px) }
+}
+
+@keyframes randomMovement7 {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(-6px, 8px) }
+    100% { transform: translate(0px, 0px) }
+}
+
+@keyframes randomMovement8 {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(-9px, -1px) }
+    100% { transform: translate(0px, 0px) }
+}
+
+@keyframes randomMovement9 {
+    0% { transform: translate(0px, 0px) }
+    50% { transform: translate(10px, 3px) }
+    100% { transform: translate(0px, 0px) }
+}

@@ -1,16 +1,17 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <title>Gallery</title>
-    <link rel="stylesheet" href="assets/gallery-015970ae.css">
-    <link rel="stylesheet" href="assets/main-6e516ed5.css">
+    <link rel="stylesheet" href="assets/gallery-1e2c8cf0.css">
+    <link rel="stylesheet" href="assets/main-0bfef11b.css">
+    <link rel="stylesheet" href="assets/common-5adea96b.css">
 </head>
-<body>
+<body style="background-image: url('assets/halftone-bg.jpg')">
 
 <div id="scroll-progress"></div>
 <div id="header">
     <img class="logo" src="assets/deyoungsters-logo-236aeac0.svg" width="150" height="75">
-    <a href="">About</a>
-    <a href="">Help</a>
+    <a href="about.html">About</a>
+    <a href="help.html">Help</a>
 </div>
 
 <div id="banner">
@@ -19,13 +20,13 @@
         <div class="action-box">
             <span>Mix and match artists' creations to make <br> your own halftone masterpieces</span>
             <div id="action-buttons">
-                <button class="upload" id="upload-button">
+                <button class="upload header" id="upload-button">
                     <br>
                     <label>Upload an image</label>
                     <br>
                     <img src="assets/upload-b62add62.svg">
                 </button>
-                <button class="gallery" id="gallery-button">
+                <button class="gallery header" id="gallery-button">
                     <br>
                     <label>Start from the gallery</label>
                     <br>
@@ -38,15 +39,48 @@
 
 <div id="gallery">
     <div id="thumb-container"></div>
-    <button id="close-btn">x</button>
-    <div id="full-image"></div>
-    <div id="info">
-        <h3>Created by:</h3>
-        <span>Kelly H.</span>
-        <button>Remix It!</button>
+</div>
+
+<div id="pagination">
+    <a>Previous</a><a class="page">1</a><a class="page">2</a><a class="page current">3</a><a class="page">4</a><a class="page">Next</a>
+</div>
+
+<div id="footer">
+    <div class="column logo">
+        <img class="logo" src="assets/deyoungsters-logo-236aeac0.svg" width="150" height="75">
+    </div>
+
+    <div class="column link">
+        <a href="about.html" class="link">About</a>
+        <a href="help.html" class="link">Help</a>
+        <span class="tinytext">© 2021 Fine Arts Museums of San Francisco</span>
+    </div>
+
+    <div class="column">
+        <div class="social">
+            <a href=""><img src="assets/facebook-c3340599.svg"></a>
+            <a href=""><img src="assets/twitter-630fd94b.svg"></a>
+            <a href=""><img src="assets/instagram-0f061ad8.svg"></a>
+        </div>
+        <span class="address">50 Hagiwara Tea Garden Drive</span>
+        <span class="address">San Francisco, CA 94118</span>
+        <span class="tinytext">Credits:  Adobe</span>
+    </div>
+</div>
+
+<div id="modal">
+    <div class="content">
+        <button id="close-btn"><img src="assets/close-icon-5a89ed60.svg"></button>
+        <div id="full-image"></div>
+        <div class="info-container">
+            <h3>Kelly H.</h3>
+            <span>Age 6</span>
+            <button id="remix-btn"><img src="assets/remix-icon-af970f4b.svg"> Remix!</button>
+        </div>
     </div>
 </div>
 
 
 
-<script type="module" src="./inline-module-0f4cb6cb0b707891c5ec82b2db1b819c.js"></script></body></html>
+
+<script type="module" src="./inline-module-55c4fc9db595e1cbec5508fe062f1791.js"></script></body></html>
