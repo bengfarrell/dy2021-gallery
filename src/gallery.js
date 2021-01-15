@@ -5,7 +5,7 @@ const params = new URLSearchParams(document.location.href.split('?')[1] );
 const QUARTER_CONTAINER_ITEMS = 4;
 const BASE_DEVICE_PIXEL_RATIO_SIZE = 39;
 const ASSET_CATEGORY = 'layer'
-const THUMB_URI = 'http://artparty.ctlprojects.com/';
+const THUMB_URI = 'https://artparty.ctlprojects.com/';
 const THUMBS_PER_PAGE = 200;
 
 let assets = undefined;
@@ -153,7 +153,7 @@ export const generateSampleData = (numItems) => {
 
 export const loadData = () => {
     const proxyUrl = params.has('proxy') ? (params.get('proxy') || 'https://cors-anywhere.herokuapp.com') : undefined;
-    const targetUrl = `http://artparty.ctlprojects.com/list/${ASSET_CATEGORY}?count=${THUMBS_PER_PAGE}`;
+    const targetUrl = `https://artparty.ctlprojects.com/list/${ASSET_CATEGORY}?count=${THUMBS_PER_PAGE}`;
     const uri = proxyUrl ? `${proxyUrl}/${targetUrl}` : `${targetUrl}`;
 
     return fetch(uri)

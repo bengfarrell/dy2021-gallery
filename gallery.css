@@ -5,68 +5,17 @@
 
 #gallery {
     width: 100vw;
-    height: 100vh;
     display: inline-block;
     position: relative;
     align-content: center;
 }
 
 #thumb-container {
-    display: inline;
-    position: absolute;
+    display: inline-block;
+    position: relative;
     width: 100%;
     height: 100%;
     transform: translate(0, 0);
-    transition: transform 500ms ease-in;
-}
-
-#info {
-    flex-direction: column;
-    font-size: 16px;
-    position: fixed;
-    font-family: sans-serif;
-    top: 45%;
-    left: 60%;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 500ms ease-in;
-}
-
-.selected-mode #info {
-    display: flex;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 500ms ease-in;
-}
-
-#info button {
-    font-size: 24px;
-    width: 150px;
-    margin-top: 15px;
-    padding: 10px;
-}
-
-button {
-    font-family: sans-serif;
-    color: white;
-    border-radius: 60px;
-    border: none;
-    background-color: #00D5BC;
-    font-size: 48px;
-}
-
-#close-btn {
-    top: 5%;
-    right: 5%;
-    position: fixed;
-    width: 100px;
-    height: 100px;
-    transform: scale(0, 0);
-    transition: transform 500ms ease-in;
-}
-
-.selected-mode #close-btn {
-    transform: scale(1, 1);
     transition: transform 500ms ease-in;
 }
 
@@ -78,11 +27,6 @@ button {
 
 #thumb-container .thumb:hover {
     transform: scale(1.2, 1.2);
-}
-
-#gallery.selected-mode .thumb {
-    transform: scale(0, 0);
-    transition: transform 100ms ease-in;
 }
 
 #thumb-container .thumb.s {
@@ -117,26 +61,6 @@ button {
 .grid-container.quarter {
     width: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
     height: calc(var(--smallThumbSize) * 2 + var(--smallThumbMargin) * 2 * 2);
-}
-
-#full-image {
-    width: 50%;
-    height: 100%;
-    background-color: black;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    position: fixed;
-}
-
-#gallery:not(.selected-mode) #full-image {
-    transform: translate(-100%, 0);
-    transition: transform 500ms ease-in;
-}
-
-#gallery.selected-mode #full-image {
-    transform: translate(0, 0);
-    transition: transform 500ms ease-in;
 }
 
 #thumb-container .thumb.anim0:not(:hover) {

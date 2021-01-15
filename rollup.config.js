@@ -4,15 +4,15 @@ import copy from 'rollup-plugin-copy';
 import clean from 'rollup-plugin-clean'
 
 export default {
-    input: 'index.html',
     output: { dir: 'dist' },
     plugins: [
         clean(),
         nodeResolve(),
-        html(),
+        html({ input: ['index.html', 'about.html', 'help.html'] }),
         copy({
             targets: [
                 { src: 'sampleimages', dest: 'dist/' },
+                { src: 'assets/halftone-bg.jpg', dest: 'dist/assets' },
             ]
         })],
 };

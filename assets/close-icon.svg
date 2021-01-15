@@ -1,0 +1,13 @@
+<svg id="Single_icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g fill="#2c2c2c" stroke="rgba(0,0,0,0)" stroke-width="1" opacity="0">
+    <rect width="24" height="24" stroke="none"/>
+    <rect x="0.5" y="0.5" width="23" height="23" fill="none"/>
+  </g>
+  <g id="Icon">
+    <g id="Canvas" fill="#2c2c2c" stroke="#6e6e6e" stroke-width="1" opacity="0">
+      <rect width="24" height="24" stroke="none"/>
+      <rect x="0.5" y="0.5" width="23" height="23" fill="none"/>
+    </g>
+    <path d="M17.5,4.866l-5.5,5.5-5.5-5.5a.579.579,0,0,0-.819,0l-.819.819a.579.579,0,0,0,0,.819l5.5,5.5-5.5,5.5a.579.579,0,0,0,0,.819l.819.819a.579.579,0,0,0,.819,0l5.5-5.5,5.5,5.5a.579.579,0,0,0,.819,0l.819-.819a.579.579,0,0,0,0-.819l-5.5-5.5,5.5-5.5a.579.579,0,0,0,0-.819l-.819-.819a.579.579,0,0,0-.819,0Z" fill="#2c2c2c"/>
+  </g>
+</svg>
