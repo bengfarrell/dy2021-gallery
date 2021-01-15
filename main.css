@@ -162,6 +162,8 @@ button.header {
 #modal .content #full-image {
     flex: 1;
     border-right-width: 1px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
     border-right-style: solid;
     border-right-color: #E1E1E1;
     background-color: #F5F5F5;
