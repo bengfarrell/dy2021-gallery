@@ -1,0 +1,222 @@
+body {
+    font-size: 22px;
+}
+
+button.header {
+    font-family: sans-serif;
+    color: white;
+    border-radius: 60px;
+    border: none;
+    background-color: #00D5BC;
+    font-size: 48px;
+}
+
+#scroll-progress {
+    height: 4px;
+    border-radius: 5px;
+    background: rgb(0,185,155);
+    background: linear-gradient(90deg, rgba(0,185,155,1) 0%, rgba(140,62,179,1) 100%);
+    top: 0;
+    z-index: 9998;
+    position: fixed;
+}
+
+#banner {
+    position: relative;
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-top: 75px;
+    padding-bottom: 25px;
+}
+
+#banner .main-content {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+#banner h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 8vw;
+    font-weight: bold;
+}
+
+#banner .main-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#banner .main-content .action-box {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    min-width: 380px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#banner button {
+    font-size: 22px;
+    width: 160px;
+    height: 160px;
+    border-radius: 300px;
+    margin-top: 25px;
+    margin-right: 25px;
+}
+
+#banner button img {
+    margin-top: 5px;
+}
+
+#banner button.upload {
+    background-color: #10B79B;
+}
+
+#banner button.upload:hover {
+    background-color: #0c816e;
+}
+
+#banner button.gallery {
+    background-color: #9272B8;
+}
+
+#banner button.gallery:hover {
+    background-color: #58456e;
+}
+
+#header .logo {
+    margin-right: auto;
+}
+
+#pagination {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+#pagination a {
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    padding-top: 5px;
+}
+
+#pagination span.disabled {
+    color: #EAEAEA;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#pagination span {
+    padding-top: 5px;
+}
+
+#pagination a:hover {
+    color: #9272B8;
+}
+
+#pagination a.page {
+    text-align: center;
+}
+
+#pagination a.page.current {
+    width: 35px;
+    height: 30px;
+    border-radius: 100px;
+    color: white;
+    cursor: inherit;
+    background-color: #9272B8;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000F30CC;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: none;
+}
+
+#modal.active {
+    display: flex;
+}
+
+#modal .content {
+    width: calc(100% - 120px);
+    height: calc(100% - 120px);
+    border-radius: 10px;
+    margin: 60px;
+    background-color: white;
+    position: relative;
+    display: flex;
+}
+
+#modal .content #full-image {
+    flex: 1;
+    border-right-width: 1px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-right-style: solid;
+    border-right-color: #E1E1E1;
+    background-color: #F5F5F5;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#modal .content .info-container {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 360px;
+    margin-left: 30px;
+}
+
+#modal .content .info-container h3 {
+    font-size: 40px;
+}
+
+#modal .content .info-container span {
+    font-size: 22px;
+    color: #9272B8;
+    margin-bottom: 65px;
+    display: block;
+}
+
+#modal #close-btn {
+    padding-top: 4px;
+    width: 40px;
+    height: 36px;
+    border: none;
+    border-radius: 50px;
+    background-color: #EAEAEA;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+#modal #close-btn:hover {
+    background-color: #cfcfcf;
+}
+
+#modal #remix-btn {
+    width: 140px;
+    height: 40px;
+    border-radius: 20px;
+    color: white;
+    font-size: 22px;
+    background-color: #10B79B;
+    border: none;
+}
+
+#modal #remix-btn img {
+    width: 22px;
+    height: 22px;
+    vertical-align: text-top;
+}
