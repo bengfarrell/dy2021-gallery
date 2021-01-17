@@ -106,6 +106,12 @@ button.header {
     padding-top: 5px;
 }
 
+#pagination span.disabled {
+    color: #EAEAEA;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 #pagination span {
     padding-top: 5px;
 }

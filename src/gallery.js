@@ -84,29 +84,28 @@ export const renderModalInfo = (infoContainer, asset, user) => {
 
 const paginationTemplate = (pageStart, pageEnd, totalAssets) => {
     const numPages = Math.ceil(totalAssets / THUMBS_PER_PAGE);
-    const currentPage = Math.floor(pageStart / THUMBS_PER_PAGE) + 1;
+    const currentPage = Math.floor(pageStart / THUMBS_PER_PAGE);
 
     if (numPages <= 1) {
         return html``;
     }
 
-    let links;
-    if (currentPage === 1) {
-        links = [...Array(numPages).keys(), 'Next'];
-    } else if (currentPage === numPages) {
-        links = ['Previous', ...Array(numPages).keys()];
-    } else {
-        links = ['Previous', ...Array(numPages).keys(), 'Next'];
+    let pages = [ ...Array(numPages-1).keys() ];
+    const visiblePages = 5;
+    if (pages.length > visiblePages) {
+        if (currentPage < visiblePages/2) {
+            pages = [ ...pages.slice(0, visiblePages), '...' ];
+        } else if (currentPage > pages.length - visiblePages/2) {
+            pages = [ '...', ...pages.slice(pages.length - visiblePages), pages.length ];
+        } else {
+            pages = [ ...pages.slice(currentPage - visiblePages/2, currentPage), '...', currentPage, '...', ...pages.slice(currentPage + 1, currentPage + visiblePages/2)];
+        }
     }
-
-    if (links.length > 8) {
-        links = [...links.slice(0, 6), '...', ...links.slice(links.length - 2, links.length)];
-    }
-
-    return html`${links.map( (page) => individualPageTemplate(page))}`;
+    const links = ['Previous', ...pages, 'Next'];
+    return html`${links.map( (page) => individualPageTemplate(page, numPages))}`;
 };
 
-const individualPageTemplate = (page) => {
+const individualPageTemplate = (page, numPages) => {
     if (typeof page === 'number') {
         return html`<a data-page=${page+1} @click=${ (e) => navigatePage(e)} class="page ${page+1 === currentPage+1 ? 'current' : ''}">${page+1}</a>`;
     }
@@ -115,6 +114,18 @@ const individualPageTemplate = (page) => {
         return html`<span>${page}</span>`;
     }
 
+    let disabled = false;
+    if (page === 'Previous' && currentPage === 0) {
+        disabled = true;
+    }
+
+    if (page === 'Next' && currentPage >= numPages - 1) {
+        disabled = true;
+    }
+
+    if (disabled) {
+        return html`<span class="disabled">${page}</span>`;
+    }
     return html`<a data-page=${page} @click=${(e) => navigatePage(e)}>${page}</a>`;
 }
 

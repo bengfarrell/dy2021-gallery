@@ -75,3 +75,42 @@ body {
     margin-bottom: 65px;
     font-size: 14px;
 }
+
+#footer .tinytext.adobe span {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width:1023px) {
+    #footer {
+        flex-direction: column;
+        height: inherit;
+        position: relative;
+        padding-bottom: 240px;
+        align-items: center;
+    }
+
+    #footer .column {
+        width: 100%;
+        align-items: center;
+    }
+
+    #footer .social {
+        margin-left: 30px;
+        justify-content: center;
+    }
+
+    #footer .tinytext {
+        position: absolute;
+        margin-bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    #footer .tinytext.museum {
+        bottom: 120px;
+    }
+
+    #footer .tinytext.adobe {
+        bottom: 80px;
+    }
+}
