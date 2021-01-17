@@ -13,6 +13,7 @@ export default {
             targets: [
                 { src: 'sampleimages', dest: 'dist/' },
                 { src: 'assets/halftone-bg.jpg', dest: 'dist/assets' },
+                { src: 'assets/sampledata.json', dest: 'dist/assets' },
             ]
         })],
 };
