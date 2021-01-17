@@ -23,6 +23,8 @@
     border-radius: 200px;
     background-color: #EAEAEA;
     transition: transform 100ms ease-in;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #thumb-container .thumb:hover {

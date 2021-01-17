@@ -11,9 +11,9 @@
 
 <div id="scroll-progress"></div>
 <div id="header">
-    <img class="logo" src="assets/deyoungsters-logo.svg" width="150" height="75" />
-    <a href="about.html">About</a>
-    <a href="help.html">Help</a>
+    <a class="home" href="index.html"><img class="logo" src="assets/deyoungsters-logo.svg" width="150" height="75" /></a>
+    <a class="pagelink" href="about.html">About</a>
+    <a class="pagelink" href="help.html">Help</a>
 </div>
 
 <div id="banner">
@@ -60,13 +60,13 @@
 
     <div class="column">
         <div class="social">
-            <a href=""><img src="assets/facebook.svg" /></a>
-            <a href=""><img src="assets/twitter.svg" /></a>
-            <a href=""><img src="assets/instagram.svg" /></a>
+            <a href="https://www.facebook.com/deYoungMuseum"><img src="assets/facebook.svg" /></a>
+            <a href="https://twitter.com/deyoungmuseum"><img src="assets/twitter.svg" /></a>
+            <a href="https://www.instagram.com/deyoungmuseum"><img src="assets/instagram.svg" /></a>
         </div>
         <span class="address">50 Hagiwara Tea Garden Drive</span>
         <span class="address">San Francisco, CA 94118</span>
-        <span class="tinytext">Credits:  Adobe</span>
+        <a href="https://www.adobe.com" class="tinytext">Credits:  Adobe</a>
     </div>
 </div>
 
@@ -74,21 +74,18 @@
     <div class="content">
         <button id="close-btn"><img src="assets/close-icon.svg"/></button>
         <div id="full-image"></div>
-        <div class="info-container">
-            <h3>Kelly H.</h3>
-            <span>Age 6</span>
-            <button id="remix-btn"><img src="assets/remix-icon.svg"/> Remix!</button>
-        </div>
+        <div class="info-container"></div>
     </div>
 </div>
 
 <script type="module">
-    import { renderGallery, addInteractivity, getAssetImage } from './src/gallery.js';
+    import { renderGallery, addInteractivity, getAssetImage, renderModalInfo } from './src/gallery.js';
     import { chooseFile } from './src/upload.js';
 
     const container = document.getElementById('thumb-container');
+    const pagination = document.getElementById(('pagination'))
     window.addEventListener('resize', () => {
-        renderGallery(container);
+        renderGallery(container, pagination);
     });
 
     window.addEventListener('scroll', () => {
@@ -98,11 +95,12 @@
         document.getElementById('scroll-progress').style.width = scrolled + "%";
     })
 
-    renderGallery(container);
+    renderGallery(container, pagination);
 
-    addInteractivity(container, asset => {
+    addInteractivity(container, (asset, user) => {
         document.getElementById('modal').classList.toggle('active', true);
         document.getElementById('full-image').style.backgroundImage = `url(${getAssetImage(asset, 'full')})`;
+        renderModalInfo(document.querySelector('.info-container'), asset, user)
     });
 
     document.getElementById('close-btn').addEventListener('click', () => {

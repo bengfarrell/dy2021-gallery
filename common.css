@@ -13,16 +13,16 @@ body {
     z-index: 9998;
 }
 
-#header a {
-    font-size: 16px;
+#header a.pagelink {
     color: black;
     text-decoration: none;
     margin-right: 30px;
     margin-top: 45px;
 }
 
-#header img {
+#header a.home {
     margin-top: 15px;
+    margin-right: auto;
 }
 
 #footer {
@@ -66,13 +66,12 @@ body {
 }
 
 #footer a {
-    font-size: 16px;
     color: white;
     text-decoration: none;
 }
 
-#footer span.tinytext {
+#footer .tinytext {
     margin-top: auto;
     margin-bottom: 65px;
-    font-size: 11px;
+    font-size: 14px;
 }

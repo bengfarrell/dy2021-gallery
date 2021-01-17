@@ -1,3 +1,7 @@
+body {
+    font-size: 22px;
+}
+
 button.header {
     font-family: sans-serif;
     color: white;
@@ -17,25 +21,6 @@ button.header {
     position: fixed;
 }
 
-#header {
-    position: fixed;
-    display: flex;
-    width: 100%;
-    z-index: 9998;
-}
-
-#header a {
-    font-size: 16px;
-    color: black;
-    text-decoration: none;
-    margin-right: 30px;
-    margin-top: 45px;
-}
-
-#header img {
-    margin-top: 15px;
-}
-
 #banner {
     position: relative;
     display: flex;
@@ -46,9 +31,9 @@ button.header {
 }
 
 #banner .main-content {
-    margin-left: 15%;
-    margin-right: 15%;
-    width: 70%;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
 }
 
 #banner h1 {
@@ -56,23 +41,28 @@ button.header {
     margin-bottom: 0;
     padding-right: 15px;
     margin-right: auto;
+    margin-left: auto;
     font-size: 8vw;
     font-weight: bold;
 }
 
 #banner .main-content {
     display: flex;
+    flex-wrap: wrap;
 }
 
 #banner .main-content .action-box {
     padding-top: 60px;
     padding-bottom: 60px;
+    min-width: 380px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #banner button {
-    font-size: 12px;
-    width: 100px;
-    height: 100px;
+    font-size: 22px;
+    width: 160px;
+    height: 160px;
     border-radius: 300px;
     margin-top: 25px;
     margin-right: 25px;
@@ -113,7 +103,11 @@ button.header {
     margin-left: 10px;
     margin-right: 10px;
     cursor: pointer;
-    padding-top: 7px;
+    padding-top: 5px;
+}
+
+#pagination span {
+    padding-top: 5px;
 }
 
 #pagination a:hover {
@@ -121,14 +115,13 @@ button.header {
 }
 
 #pagination a.page {
-    width: 25px;
     text-align: center;
 }
 
 #pagination a.page.current {
-    width: 32px;
-    height: 25px;
-    border-radius: 30px;
+    width: 35px;
+    height: 30px;
+    border-radius: 100px;
     color: white;
     cursor: inherit;
     background-color: #9272B8;
@@ -138,7 +131,7 @@ button.header {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #000F30;
+    background-color: #000F30CC;
     width: 100vw;
     height: 100vh;
     z-index: 9999;
