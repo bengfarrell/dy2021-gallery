@@ -7,6 +7,7 @@ const BASE_DEVICE_PIXEL_RATIO_SIZE = 39;
 const ASSET_CATEGORY = 'all' // layer, composite
 const THUMB_URI = 'https://artparty.ctlprojects.com';
 const THUMBS_PER_PAGE = Number(params.get('thumbsperpage')) || 100;
+const REMIX_APP = 'http://adobe.deyoungsters.com/remix';
 let currentPage = 0;
 
 const pages = [];
@@ -78,9 +79,23 @@ export const renderModalInfo = (infoContainer, asset, user) => {
     render(
         html`<h3>${user.first} ${user.last}${user.last ? '.' : ''}</h3>
             <span>${user.age ? 'Age' : ''} ${user.age}</span>
-            <button id="remix-btn"><img src="assets/remix-icon.svg"/> Remix!</button>`
+            <button 
+                    data-id=${asset.unique_id}
+                    data-layer=${asset.asset_type}
+                    @click=${(e) => remixImage(e)} 
+                    id="remix-btn">
+                <img src="assets/remix-icon.svg"/> Remix!
+            </button>`
         , infoContainer);
-}
+};
+
+export const remixImage = (e) => {
+    let background = 'upload';
+    if (e && e.dataset && e.dataset.id && e.dataset.layer) {
+        background = getAssetImage({ unique_id: e.currentTarget.dataset.id, asset_type: e.currentTarget.dataset.layer }, 'full');
+    }
+    window.location.href = `${REMIX_APP}?background=${background}`;
+};
 
 const paginationTemplate = (pageStart, pageEnd, totalAssets) => {
     const numPages = Math.ceil(totalAssets / THUMBS_PER_PAGE);

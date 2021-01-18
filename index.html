@@ -79,7 +79,7 @@
 </div>
 
 <script type="module">
-    import { renderGallery, addInteractivity, getAssetImage, renderModalInfo } from './src/gallery.js';
+    import {renderGallery, addInteractivity, getAssetImage, renderModalInfo, remixImage} from './src/gallery.js';
     import { chooseFile } from './src/upload.js';
 
     const container = document.getElementById('thumb-container');
@@ -115,7 +115,7 @@
         })
     );
 
-    document.getElementById('upload-button').addEventListener('click', chooseFile );
+    document.getElementById('upload-button').addEventListener('click', remixImage );
 </script>
 </body>
 </html>
