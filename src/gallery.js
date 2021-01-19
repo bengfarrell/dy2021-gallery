@@ -84,7 +84,7 @@ export const renderModalInfo = (infoContainer, asset, user) => {
                     data-layer=${asset.asset_type}
                     @click=${(e) => remixImage(e)} 
                     id="remix-btn">
-                <img src="assets/remix-icon.svg"/> Remix!
+                <img src="./assets/remix-icon.svg"/> Remix!
             </button>`
         , infoContainer);
 };
