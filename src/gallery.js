@@ -281,7 +281,7 @@ export const generateSampleData = (numItems) => {
 
 export const loadData = () => {
     // url of live server
-    const serverUrl = `https://artparty.ctlprojects.com/list/${ASSET_CATEGORY}?count=${THUMBS_PER_PAGE}&page=${currentPage}`;
+    const serverUrl = `https://artparty.ctlprojects.com/list/${ASSET_CATEGORY}?__do_not_cache__=${Date.now()}&count=${THUMBS_PER_PAGE}&page=${currentPage}`;
     const targetUrl = params.has('dataurl') ? params.get('datarul') || './assets/sampledata.json' : serverUrl;
     const proxyUrl = params.has('proxy') ? (params.get('proxy') || 'https://cors-anywhere.herokuapp.com') : undefined;
     const uri = proxyUrl ? `${proxyUrl}/${targetUrl}` : `${targetUrl}`;
