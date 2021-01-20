@@ -1248,7 +1248,7 @@ const renderModalInfo = (infoContainer, asset, user) => {
 
 const remixImage = (e) => {
     let background = 'upload';
-    if (e && e.dataset && e.dataset.id && e.dataset.layer) {
+    if (e && e.target.dataset && e.target.dataset.id && e.target.dataset.layer) {
         background = getAssetImage({ unique_id: e.currentTarget.dataset.id, asset_type: e.currentTarget.dataset.layer }, 'full');
     }
     window.location.href = `${REMIX_APP}?background=${background}`;
