@@ -1,5 +1,6 @@
 body {
     font-size: 22px;
+    margin: 0;
 }
 
 button {
@@ -12,6 +13,7 @@ button.header {
     border: none;
     background-color: #00D5BC;
     font-size: 48px;
+    animation: button-scale ease-in 3.5s;
 }
 
 #scroll-progress {
@@ -47,6 +49,7 @@ button.header {
     margin-left: auto;
     font-size: 8vw;
     font-weight: bold;
+    animation: header-slide ease-in 3.5s;
 }
 
 #banner .main-content {
@@ -222,4 +225,113 @@ button.header {
     width: 22px;
     height: 22px;
     vertical-align: text-top;
+}
+
+#gallery {
+    animation: gallery-slide ease-in 3.5s;
+}
+
+#intro-anim {
+    width: 100vw;
+    height: 100vh;
+    background-color: #10B79B;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+}
+
+#intro-anim .dot {
+    position: absolute;
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    transform: scale(0, 0);
+}
+
+#intro-anim .purple-dot {
+    background-color: #9272B8;
+    animation: purple-dot normal 2s;
+    animation-delay: 1s;
+}
+
+#intro-anim .orange-dot {
+    background-color: #FCB241;
+    animation: orange-dot normal 2s;
+    animation-delay: 1s;
+}
+
+#intro-anim .white-dot {
+    background-color: white;
+    animation: white-dot normal 1s;
+    animation-delay: 2s;
+}
+
+#intro-anim .logo-container {
+    display: inline-block;
+}
+
+#intro-anim .logo-container .logo-text-top {
+    animation: textIn-top ease-in .25s;
+}
+
+#intro-anim .logo-container .logo-text-bottom {
+    animation: textIn-bottom ease-in .5s;
+}
+
+#header {
+    animation: header-slide ease-in 3.0s;
+}
+
+@keyframes button-scale {
+    0% {transform: scale(0, 0)}
+    90% {transform: scale(0, 0)}
+    100% {transform: scale(1, 1)}
+}
+
+@keyframes gallery-slide {
+    0% {opacity: 0; transform: translate(0, 50px)}
+    70% {opacity: 0; transform: translate(0, 50px)}
+    100% {opacity: 1; transform: translate(0, 0)}
+}
+
+@keyframes header-slide {
+    0% {opacity:0; transform: translate(0, -100px)}
+    70% {opacity:0; transform: translate(0, -100px)}
+    100% {opacity:1; transform: translate(0, 0%)}
+}
+
+@keyframes textIn-top {
+    0% {opacity:0; transform: translate(0, 25%)}
+    100% {opacity:1; transform: translate(0, 0%)}
+}
+
+@keyframes textIn-bottom {
+    0% {opacity:0; transform: translate(0, 25%)}
+    50% {opacity:0; transform: translate(0, 25%)}
+    100% {opacity:1; transform: translate(0, 0%)}
+}
+
+@keyframes purple-dot {
+    0% {transform: scale(0, 0)}
+    50% {transform: scale(50, 50)}
+    100% {transform: scale(50, 50)}
+}
+
+@keyframes orange-dot {
+    0% {transform: scale(0, 0)}
+    40% {transform: scale(6, 6)}
+    60% {transform: scale(5.5, 5.5)}
+    100% {transform: scale(5.5, 5.5)}
+}
+
+@keyframes white-dot {
+    0% {transform: scale(0, 0)}
+    100% {transform: scale(50, 50)}
 }

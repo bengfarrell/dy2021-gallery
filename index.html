@@ -79,9 +79,25 @@
     </div>
 </div>
 
+<div id="intro-anim">
+    <div class="logo-container">
+        <img class="logo-text-top" src="assets/deyoungsters-text.png" width="365" height="87" />
+        <br />
+        <img class="logo-text-bottom" src="assets/art-party-text.png" width="233" height="65" />
+    </div>
+    <div class="dot purple-dot"></div>
+    <div class="dot orange-dot"></div>
+    <div class="dot white-dot"></div>
+</div>
+
 <script type="module">
     import {renderGallery, addInteractivity, getAssetImage, renderModalInfo, remixImage} from './src/gallery.js';
     import { chooseFile } from './src/upload.js';
+
+    const animated = document.querySelector('#intro-anim .white-dot');
+    animated.addEventListener('animationend', () => {
+        document.getElementById('intro-anim').style.display = 'none';
+    });
 
     const container = document.getElementById('thumb-container');
     const pagination = document.getElementById(('pagination'))
