@@ -1,9 +1,12 @@
 body {
     margin: 0;
-    font-family: sans-serif;
     overscroll-behavior: none;
     background-repeat: no-repeat;
     background-size: 100% auto;
+
+    font-family: akzidenz-grotesk-next-pro, sans-serif;
+    font-style: normal;
+    font-weight: 300;
 }
 
 #header {
