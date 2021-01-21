@@ -5,9 +5,9 @@ const params = new URLSearchParams(document.location.href.split('?')[1] );
 const QUARTER_CONTAINER_ITEMS = 4;
 const BASE_DEVICE_PIXEL_RATIO_SIZE = 39;
 const ASSET_CATEGORY = 'all' // layer, composite
-const THUMB_URI = 'https://artparty.ctlprojects.com';
+const THUMB_URI = ' https://artparty2021.hooperstreetprojects.com';
 const THUMBS_PER_PAGE = Number(params.get('thumbsperpage')) || 100;
-const REMIX_APP = 'http://adobe.deyoungsters.com/remix';
+const REMIX_APP = 'https://artparty.hooperstreetprojects.com/artparty/remix';
 let currentPage = 0;
 
 const pages = [];
@@ -296,7 +296,7 @@ export const generateSampleData = (numItems) => {
 
 export const loadData = () => {
     // url of live server
-    const serverUrl = `https://artparty.ctlprojects.com/list/${ASSET_CATEGORY}?__do_not_cache__=${Date.now()}&count=${THUMBS_PER_PAGE}&page=${currentPage}`;
+    const serverUrl = ` https://artparty2021.hooperstreetprojects.com/list/${ASSET_CATEGORY}?__do_not_cache__=${Date.now()}&count=${THUMBS_PER_PAGE}&page=${currentPage}`;
     const targetUrl = params.has('dataurl') ? params.get('datarul') || './assets/sampledata.json' : serverUrl;
     const proxyUrl = params.has('proxy') ? (params.get('proxy') || 'https://cors-anywhere.herokuapp.com') : undefined;
     const uri = proxyUrl ? `${proxyUrl}/${targetUrl}` : `${targetUrl}`;
