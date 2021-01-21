@@ -90,11 +90,26 @@ export const renderModalInfo = (infoContainer, asset, user) => {
 };
 
 export const remixImage = (e) => {
-    let background = 'upload';
     if (e && e.currentTarget.dataset && e.currentTarget.dataset.id && e.currentTarget.dataset.layer) {
-        background = getAssetImage({ unique_id: e.currentTarget.dataset.id, asset_type: e.currentTarget.dataset.layer }, 'full');
+        const background = getAssetImage({ unique_id: e.currentTarget.dataset.id, asset_type: e.currentTarget.dataset.layer }, 'full');
+        sessionStorage.setItem('background', background);
+        window.location.href = REMIX_APP;
+    } else {
+        // uploading your own file
+        const fileinput = document.createElement('input');
+        fileinput.accept = 'image/*';
+        fileinput.type = 'file';
+        fileinput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader(e)
+            reader.onload = (fileReaderEvent) => {
+                sessionStorage.setItem('background', fileReaderEvent.target.result);
+            }
+            window.location.href = REMIX_APP;
+            reader.readAsDataURL(file);
+        });
+        fileinput.click();
     }
-    window.location.href = `${REMIX_APP}?background=${background}`;
 };
 
 const paginationTemplate = (pageStart, pageEnd, totalAssets) => {
