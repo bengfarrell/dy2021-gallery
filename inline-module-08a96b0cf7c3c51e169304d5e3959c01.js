@@ -1164,7 +1164,6 @@ const BASE_DEVICE_PIXEL_RATIO_SIZE = 39;
 const ASSET_CATEGORY = 'all'; // layer, composite
 const THUMB_URI = 'https://artparty.ctlprojects.com';
 const THUMBS_PER_PAGE = Number(params.get('thumbsperpage')) || 100;
-const REMIX_APP = 'http://adobe.deyoungsters.com/remix';
 let currentPage = 0;
 
 const pages = [];
@@ -1247,11 +1246,27 @@ const renderModalInfo = (infoContainer, asset, user) => {
 };
 
 const remixImage = (e) => {
-    let background = 'upload';
     if (e && e.currentTarget.dataset && e.currentTarget.dataset.id && e.currentTarget.dataset.layer) {
-        background = getAssetImage({ unique_id: e.currentTarget.dataset.id, asset_type: e.currentTarget.dataset.layer }, 'full');
+        const background = getAssetImage({ unique_id: e.currentTarget.dataset.id, asset_type: e.currentTarget.dataset.layer }, 'full');
+        sessionStorage.setItem('background', background);
+        window.location.href = 'https://bengfarrell.github.io/dy-2021-remix/'; //`${REMIX_APP}?background=${background}`;
+    } else {
+        // uploading your own file
+        const fileinput = document.createElement('input');
+        fileinput.accept = 'image/*';
+        fileinput.type = 'file';
+        fileinput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader(e);
+            reader.onload = (fileReaderEvent) => {
+                sessionStorage.setItem('background', fileReaderEvent.target.result);
+            };
+            window.location.href = 'https://bengfarrell.github.io/dy-2021-remix/';
+            reader.readAsDataURL(file);
+        });
+        fileinput.click();
     }
-    window.location.href = `${REMIX_APP}?background=${background}`;
+    //`${REMIX_APP}?background=${background}`;
 };
 
 const paginationTemplate = (pageStart, pageEnd, totalAssets) => {
