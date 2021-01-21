@@ -234,13 +234,13 @@ button.header {
 #intro-anim {
     width: 100vw;
     height: 100vh;
-    background-color: #10B79B;
     justify-content: center;
     align-items: center;
     position: absolute;
     top: 0;
     left: 0;
     display: flex;
+    animation: intro-container-fade none 4.5s;
 }
 
 #intro-anim .dot {
@@ -334,4 +334,11 @@ button.header {
 @keyframes white-dot {
     0% {transform: scale(0, 0)}
     100% {transform: scale(50, 50)}
+}
+
+@keyframes intro-container-fade {
+    0% {opacity: 1; background-color: #10B79B }
+    20% {opacity: 1; background-color: #10B79B }
+    50% {opacity: 1; background-color: white }
+    100% {opacity: 0; background-color: white }
 }

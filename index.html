@@ -92,11 +92,18 @@
 
 <script type="module">
     import {renderGallery, addInteractivity, getAssetImage, renderModalInfo, remixImage} from './src/gallery.js';
-    import { chooseFile } from './src/upload.js';
 
-    const animated = document.querySelector('#intro-anim .white-dot');
-    animated.addEventListener('animationend', () => {
-        document.getElementById('intro-anim').style.display = 'none';
+    const animated = document.getElementById('intro-anim');
+    animated.addEventListener('animationend', (e) => {
+        if (e.target === animated) {
+            document.getElementById('intro-anim').style.display = 'none';
+        } else {
+            if (e.target === document.querySelector('#intro-anim .logo-container .logo-text-bottom')) {
+                setTimeout( () => {
+                    document.querySelector('#intro-anim .logo-container').style.display = 'none';
+                }, 500);
+            }
+        }
     });
 
     const container = document.getElementById('thumb-container');
