@@ -1,5 +1,15 @@
+:root {
+    --fontsize12: 12px;
+    --fontsize14: 14px;
+    --fontsize24: 24px;
+    --fontsize22: 22px;
+    --fontsize40: 40px;
+    --fontsize48: 48px;
+    --fontsize80: 80px;
+}
+
 body {
-    font-size: 22px;
+    font-size: var(--fontsize22);
     margin: 0;
     overscroll-behavior: none;
     background-repeat: no-repeat;
@@ -8,6 +18,12 @@ body {
     font-family: akzidenz-grotesk-next-pro, sans-serif;
     font-style: normal;
     font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+}
+
+img.logo {
+    width: 150px;
+    height: 75px;
 }
 
 #header {
@@ -17,11 +33,30 @@ body {
     z-index: 9998;
 }
 
+#header.scrolled {
+    animation: ease-in 2s;
+    background-color: rgba(255, 255, 255, .95);
+}
+
+@keyframes fadeIn {
+    0% {background-color: rgba(255, 255, 255, 0);}
+    100% {background-color: rgba(255, 255, 255, .95);}
+}
+
+
 #header a.pagelink {
     color: black;
     text-decoration: none;
+    font-size: var(--fontsize22);
     margin-right: 30px;
     margin-top: 45px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2) and (max-width:980px) and (orientation: portrait) {
+    #header a.pagelink {
+        margin-right: 60px;
+        margin-top: 60px;
+    }
 }
 
 #header a.home {
@@ -77,12 +112,45 @@ body {
 #footer .tinytext {
     margin-top: auto;
     margin-bottom: 65px;
-    font-size: 14px;
+    font-size: var(--fontsize14);
 }
 
 #footer .tinytext.adobe span {
     text-decoration: underline;
 }
+
+#footer img.facebook {
+    width: 12px;
+    height: 24px;
+}
+
+#footer img.twitter {
+    width: 24px;
+    height: 69px;
+}
+
+#footer img.instagram {
+    width: 24px;
+    height: 53px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2) and (max-width:980px) and (orientation: portrait) {
+    #footer img.facebook {
+        width: 24px;
+        height: 48px;
+    }
+
+    #footer img.twitter {
+        width: 48px;
+        height: 138px;
+    }
+
+    #footer img.instagram {
+        width: 48px;
+        height: 106px;
+    }
+}
+
 
 @media only screen and (max-width:1023px) {
     #footer {
@@ -116,5 +184,22 @@ body {
 
     #footer .tinytext.adobe {
         bottom: 80px;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2) and (max-width:980px) and (orientation: portrait) {
+    img.logo {
+        width: 300px;
+        height: 150px;
+    }
+
+    :root {
+        --fontsize12: 24px;
+        --fontsize14: 28px;
+        --fontsize24: 48px;
+        --fontsize22: 44px;
+        --fontsize40: 80px;
+        --fontsize48: 92px;
+        --fontsize80: 160px;
     }
 }

@@ -5,7 +5,7 @@ h1 {
 
 h3 {
     font-weight: 600;
-    font-size: 24px;
+    font-size: var(--fontsize24);
     color: #707070;
 }
 
@@ -17,30 +17,31 @@ h3 {
 }
 
 #content span {
-    font-size: 22px;
+    font-size: var(--fontsize22);
 }
 
 #content h1 {
-    font-size: 80px;
+    font-size: var(--fontsize80);
     margin-top: 0;
     color: #10B79B;
 }
 
 #content, #content a {
     font-weight: 600;
-    font-size: 24px;
+    font-size: var(--fontsize24);
     color: #9272B8;
 }
 
-#content li span {
-    display: block;
-    margin-left: 25px;
+#content li::marker {
+    font-weight: 700;
+    color: #9272B8;
 }
 
-#content li span, #content li span a {
-    font-size: 24px;
+#content li {
+    font-size: var(--fontsize24);
     font-weight: 300;
     color: #707070;
+    padding-left: 25px;
 }
 
 #content .about-columns {
@@ -112,7 +113,7 @@ h3 {
 
 #team span {
     display: block;
-    font-size: 12px;
+    font-size: var(--fontsize12);
 }
 
 #team span.role {

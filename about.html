@@ -5,13 +5,18 @@
     <title>de Youngsters Art Party : About</title>
     <link rel="stylesheet" href="secondarypage.css" />
     <link rel="stylesheet" href="common.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/cee3fky.css">
+    <link rel="stylesheet" href="https://use.typekit.net/cee3fky.css" />
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', true);
+        })
+    </script>
 </head>
 <body style="background-image: url('assets/halftone-bg.jpg')">
 
 <div id="scroll-progress"></div>
 <div id="header">
-    <a class="home" href="index.html"><img class="logo" src="assets/deyoungsters-logo.svg" width="150" height="75" /></a>
+    <a class="home" href="index.html"><img class="logo" src="assets/deyoungsters-logo.svg" /></a>
     <a class="pagelink" href="about.html">About</a>
     <a class="pagelink" href="help.html">Help</a>
 </div>
@@ -31,12 +36,12 @@
             <p>Steps</p>
 
             <ol>
-                <li><span>Select two images - One image will become the foreground and the other will become the background in this remix.</span></li>
-                <li><span>You may replace one or both of your images with a random image provided, or combine select artwork submitted by a fellow de Youngster to create a collaborative art piece.</span></li>
-                <li><span>Composited images will be shown as the foreground image converts to a halftone pattern. It will use the negative or positive space of your artwork to show through to the background image. See our examples on this page</span></li>
-                <li><span>Check out the different controls to customize your unique halftone pattern.</span></li>
-                <li><span>Save your work or follow the onscreen instructions to share your work with other de Youngsters artists!</span></li>
-                <li><span>To share your artwork in the public online gallery, please email your image(s) to <a href="mailto:specialevents@famsf.org">specialevents@famsf.org</a></span></li>
+                <li>Select two images - One image will become the foreground and the other will become the background in this remix.</li>
+                <li>You may replace one or both of your images with a random image provided, or combine select artwork submitted by a fellow de Youngster to create a collaborative art piece.</li>
+                <li>Composited images will be shown as the foreground image converts to a halftone pattern. It will use the negative or positive space of your artwork to show through to the background image. See our examples on this page</li>
+                <li>Check out the different controls to customize your unique halftone pattern.</li>
+                <li>Save your work or follow the onscreen instructions to share your work with other de Youngsters artists!</li>
+                <li>To share your artwork in the public online gallery, please email your image(s) to <a href="mailto:specialevents@famsf.org">specialevents@famsf.org</a></li>
             </ol>
             Happy mixing!
         </div>
@@ -105,9 +110,9 @@
 
     <div class="column">
         <div class="social">
-            <a href="https://www.facebook.com/deYoungMuseum"><img src="assets/facebook.svg" /></a>
-            <a href="https://twitter.com/deyoungmuseum"><img src="assets/twitter.svg" /></a>
-            <a href="https://www.instagram.com/deyoungmuseum"><img src="assets/instagram.svg" /></a>
+            <a href="https://www.facebook.com/deYoungMuseum"><img class="facebook" src="assets/facebook.svg" /></a>
+            <a href="https://twitter.com/deyoungmuseum"><img class="twitter" src="assets/twitter.svg" /></a>
+            <a href="https://www.instagram.com/deyoungmuseum"><img class="instagram" src="assets/instagram.svg" /></a>
         </div>
         <span class="address">50 Hagiwara Tea Garden Drive</span>
         <span class="address">San Francisco, CA 94118</span>

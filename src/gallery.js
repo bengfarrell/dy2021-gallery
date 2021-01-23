@@ -78,7 +78,7 @@ export const renderGallery = (container, pagination) => {
 export const renderModalInfo = (infoContainer, asset, user) => {
     render(
         html`<h3>${user.first} ${user.last}${user.last ? '.' : ''}</h3>
-            <span>${user.age ? 'Age' : ''} ${user.age}</span>
+            <span>${user.age ? 'Age' : ''} ${user.age ? user.age : ''}</span>
             <button 
                     data-id=${asset.unique_id}
                     data-layer=${asset.asset_type}
@@ -197,9 +197,9 @@ export const getAssetImage = (item, size) => {
     }
     switch (size) {
         case 's':
-            return `${THUMB_URI}/thumbnail/${item.asset_type}/${item.unique_id}/50`;
-        case 'm':
             return `${THUMB_URI}/thumbnail/${item.asset_type}/${item.unique_id}/150`;
+        case 'm':
+            return `${THUMB_URI}/thumbnail/${item.asset_type}/${item.unique_id}/300`;
         case 'full':
             return `${THUMB_URI}/image/${item.asset_type}/${item.unique_id}`;
     }
