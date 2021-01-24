@@ -93,6 +93,8 @@
 <script type="module">
     import {renderGallery, addInteractivity, getAssetImage, renderModalInfo, remixImage} from './src/gallery.js';
 
+    let width = window.width;
+    let height = window.height;
     const animated = document.getElementById('intro-anim');
     animated.addEventListener('animationend', (e) => {
         if (e.target === animated) {
@@ -109,7 +111,11 @@
     const container = document.getElementById('thumb-container');
     const pagination = document.getElementById(('pagination'))
     window.addEventListener('resize', () => {
-        renderGallery(container, pagination);
+        if (window.width !== width || winndow.height !== height) {
+            width = window.width;
+            height = window.height;
+            renderGallery(container, pagination);
+        }
     });
 
     window.addEventListener('scroll', () => {
