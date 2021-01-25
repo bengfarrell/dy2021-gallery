@@ -10,7 +10,7 @@ h3 {
 }
 
 #content {
-    padding-top: 150px;
+    padding-top: 225px;
     margin-left: 75px;
     margin-right: 75px;
     margin-bottom: 100px;
@@ -24,6 +24,7 @@ h3 {
     font-size: var(--fontsize80);
     margin-top: 0;
     color: #10B79B;
+    line-height: 1;
 }
 
 #content, #content a {
