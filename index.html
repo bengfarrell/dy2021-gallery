@@ -129,6 +129,7 @@
     renderGallery(container, pagination);
 
     addInteractivity(container, (asset, user) => {
+        console.log('click', asset)
         document.getElementById('modal').classList.toggle('active', true);
         document.getElementById('full-image').style.backgroundImage = `url(${getAssetImage(asset, 'full')})`;
         renderModalInfo(document.querySelector('.info-container'), asset, user)

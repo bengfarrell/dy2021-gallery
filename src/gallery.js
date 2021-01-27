@@ -184,7 +184,7 @@ export const addInteractivity = (container, callback) => {
     container.addEventListener('click', event => {
         const thumb = event.target;
         if (thumb.classList.contains('thumb')) {
-            const asset = assets.find(a => a.unique_id === Number(thumb.dataset.id));
+            const asset = assets.find(a => (a.unique_id === Number(thumb.dataset.id) && (a.asset_type === thumb.dataset.layer)));
             callback(asset, users[asset.user_id]);
         }
     });
@@ -209,8 +209,7 @@ const renderItem = (item) => {
     if (item.type === 'container') {
         return html`${renderContainer(item)}`;
     }
-
-    return html`<div data-id="${item.item.unique_id}" class="thumb ${item.size} anim${Math.floor(Math.random() * 10)}" style="background-image: url('${getAssetImage(item.item, item.size)}')"></div>`;
+    return html`<div data-id="${item.item.unique_id}" data-layer="${item.item.asset_type}" class="thumb ${item.size} anim${Math.floor(Math.random() * 10)}" style="background-image: url('${getAssetImage(item.item, item.size)}')"></div>`;
 }
 
 const renderContainer = (container) => {
