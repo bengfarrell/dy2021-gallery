@@ -111,9 +111,8 @@
     const container = document.getElementById('thumb-container');
     const pagination = document.getElementById(('pagination'))
     window.addEventListener('resize', () => {
-        if (window.width !== width || winndow.height !== height) {
-            width = window.width;
-            height = window.height;
+        if (window.innerWidth !== width) {
+            width = window.innerWidth;
             renderGallery(container, pagination);
         }
     });
