@@ -1277,7 +1277,7 @@ const paginationTemplate = (pageStart, pageEnd, totalAssets) => {
         return html``;
     }
 
-    let pages = [ ...Array(numPages-1).keys() ];
+    let pages = [ ...Array(numPages).keys() ];
     const visiblePages = 5;
     if (pages.length > visiblePages) {
         if (currentPage < visiblePages/2) {
